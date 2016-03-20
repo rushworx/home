@@ -1,0 +1,16 @@
+#!/usr/bin/expect
+##
+##	test sites with telnet faster
+##
+##  usage: telnethttp http://somesite.com 80
+set timeout 10
+set domain [lindex $argv 0]
+set port [lindex $argv 1]
+spawn telnet $domain $port
+expect "Escape character is '^]'."
+send "GET / HTTP/1.1\n"
+send "host: $domain\n"
+send "\n\n";
+interact
+
+

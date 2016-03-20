@@ -1,0 +1,12 @@
+set_red="\033[31;1m"
+set_yellow="\033[33;1m"
+set_green="\033[32;1m"
+set_red_bg="\033[41;1m"
+color_end="\033[0m"
+
+
+color_end="\033[0m"
+
+printf "%bError blah %b\n" "$set_error" "$color_end"
+printf "%s\n" "more text on the next line"
+

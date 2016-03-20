@@ -1,0 +1,6 @@
+#!/bin/bash
+##
+##	my right-hand screen is vertical
+##
+xrandr --output HDMI-0 --auto --right-of DVI-I-1 --rotate left
+

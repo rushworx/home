@@ -1,0 +1,18 @@
+#!/bin/bash
+##	C Macmillan 2015
+##	for quickly reversing mouse buttons when changing mouse hand
+##
+
+case "$1" in
+	left)
+	xmodmap -e "pointer = 3 2 1"
+	;;
+
+	right)
+	xmodmap -e "pointer = 1 2 3"
+	;;
+
+	*)
+	echo $"Usage: $0 {left|right}"
+	exit 1
+esac

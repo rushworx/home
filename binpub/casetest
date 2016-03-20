@@ -1,0 +1,16 @@
+#!/bin/bash
+
+read -r -p "Going to add partitions X Y and Z .. Proceed? (y=yes, s=skip)" key
+
+case "$key" in
+  y)
+	echo yes
+	;;
+  s)
+	echo skip
+	;;
+  *)
+	echo "bad input: that's not a y or an s"
+	exit 1
+	;;
+esac
