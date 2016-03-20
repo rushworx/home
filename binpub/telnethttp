@@ -2,7 +2,7 @@
 ##
 ##	test sites with telnet faster
 ##
-##  usage: telnethttp http://somesite.com 80
+##  usage: telnethttp somesite.com 80
 ##
 ## ---	requires expect ---
 ## debian: apt-get install expect
