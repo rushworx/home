@@ -1,0 +1,1 @@
+for z in a b c d e f g h; do cat /sys/block/sd$z/device/queue_depth; done

@@ -1,0 +1,28 @@
+nano /etc/cpanel_exim_system_filter
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#   Direct modifications to the /etc/cpanel_exim_system_filter file will be lost when the configuration is	#
+#   next rebuilt. To have modifications retained, please use one of the following options:                      #
+#                                                                                                               #
+#    1)                                                                                                         #
+#      * Place each sysfilter block you wish to include in a unique file at:                                    #
+#            /usr/local/cpanel/etc/exim/sysfilter/options/                                                      #
+#      * Enable or disable the custom block in WHM using:                                                       #
+#          Service Configuration => Exim Configuration Manager => Filters => Custom Filter: [your unique file]  #
+#                                                                                                               #
+#    2)                                                                                                         #
+#      * Create a custom sysfilter file in /etc/                                                                #
+#      * Change the location of the sysfilter file in WHM using:                                                #
+#          Service Configuration => Exim Configuration Manager => Filters => System Filter File                 
+
+
+
+added the following to the end of the file:
+
+if first_delivery
+and ( ("$h_from:" contains "mail.aarc.org")
+)
+then fail
+endif
+
+

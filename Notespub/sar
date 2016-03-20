@@ -1,0 +1,4 @@
+in order to actually enable it, you must
+/etc/init.d/sysstat start
+
+restart/status doesnt do shit!

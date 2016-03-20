@@ -1,0 +1,9 @@
+disable kernel messages on console:
+echo "3 4 1 3" > /proc/sys/kernel/printk 
+
+-or-
+
+dmesg -n1
+
+
+not sure difference

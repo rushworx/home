@@ -1,0 +1,16 @@
+%%%%%%%%%%%%%%%%%%%%%%% CPHULKD %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+mysql -u root cphulkd <<< "select * from brutes;" | grep 123.231.13.14
+mysql -u root cphulkd <<< "select * from brutes;"
+mysql -u root cphulkd <<< "select * from logins;"
+
+mysql -u root cphulkd <<< "delete from brutes;"
+mysql -u root cphulkd <<< "delete from logins;"
+
+mysql -u root cphulkd <<< "select * from whitelist;" | grep 123.231.13.14
+mysql -u root cphulkd <<< "select * from blacklist;" | grep 93.108.107.194
+
+%%%%%%%%%%%%%%%%%%%%%%% ACTIVATE LICENSE %%%%%%%%%%%%%%%%%%%%%%%
+/usr/local/cpanel/cpkeyclt
+
+
+http://verify.cpanel.net/

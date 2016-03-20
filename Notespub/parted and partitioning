@@ -1,0 +1,42 @@
+
+[root@centos6 ~]# parted -a optimal /dev/sdd mkpart primary 0% 1024MB
+[root@centos6 ~]# parted /dev/sdd print
+[root@centos6 ~]# parted /dev/sdd rm 2
+[root@centos6 ~]# parted /dev/sdd unit s p free
+[root@centos6 ~]# parted /dev/sdd unit MB p free
+
+align with beginning
+--------------------
+parted -a optimal /dev/sda mkpart primary 0% 4096MB
+
+http://unix.stackexchange.com/questions/38164/create-partition-aligned-using-parted
+
+raid1s to make:
+---------------
+sdb1,sdc1		md0
+	mdadm --create --bitmap=internal --metadata=1.2 --level=1 --raid-devices=2 /dev/md0 /dev/sdb1 /dev/sdc1
+	mdadm -A --metadata=1.2 /dev/md0 /dev/sdb1 /dev/sdc1
+sdb2,sdd1		md1
+	mdadm --create --bitmap=internal --metadata=1.2 --level=1 --raid-devices=2 /dev/md1 /dev/sdb2 /dev/sdd1
+sdc2,sdd2		md2
+	mdadm --create --bitmap=internal --metadata=1.2 --level=1 --raid-devices=2 /dev/md2 /dev/sdc2 /dev/sdd2
+
+[root@centos6 ~]# vgcreate fourfourtworaid /dev/md0 /dev/md1 /dev/md2
+[root@centos6 ~]# lvcreate -l 100%FREE fourfourtworaid
+
+mdadm --zero-superblock /dev/sdb1
+
+mdadm -- --scan > /etc/mdadm.conf
+mdadm --scan > /etc/mdadm/mdadm.conf
+
+mdadm --detail /dev/md0
+mdadm --detail --scan >> /etc/mdadm.conf
+mdadm --detail --scan >> /etc/mdadm/mdadm.conf
+
+
+copy partition table
+sfdisk -d /dev/sda | sfdisk --force /dev/sdf
+
+zero out a drive:
+=================
+sudo shred -n 1 -z -v /dev/sdb1

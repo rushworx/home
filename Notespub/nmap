@@ -1,0 +1,5 @@
+see if weak community string
+=
+https://administer.choopa.com/tickets/view.php?TICKETID=427919
+nmap -sU -p 161 --script snmp-brute 66.66.66.66 --script-args snmp-brute.communitiesdb=word-list
+UDP, Port 161

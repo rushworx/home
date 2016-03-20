@@ -1,0 +1,150 @@
+==============
+choopa specific
+==============
+ddos protection:
+	log into sflow1.choopa.com and update ddosprotect.ini or whatever its called
+
+
+==============
+shell commands:
+==============
+chkconfig
+	chkconfig ntpd on
+dig		-	DNS lookup utility
+find
+	find big files:
+		sudo find / -type f -size +500M -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
+grep
+	 magic grep string finder
+		find /var/www/html/*/htdocs -type f -name version.php -exec egrep -H '^\$wp_version' {} \; |fgrep -v 3.9.1
+host	-	DNS lookup utility
+kill 	http://www.linux.org/threads/kill-commands-and-signals.4423/
+	killall
+	pkill	partial name matches!
+	xkill	thru x!
+maldet	-	linux malware detect.. for shared hosting environments
+	maldet --scan-all /home/?/public_html
+mysql
+	echo 'show full processlist\g'|mysql
+
+	show global status like 'Conn%'
+	
+	create database huntrmedia;
+	grant all privileges on huntrmedia.* to 'huntrmedia'@'localhost' identified by 'iLrXQBRtlKSjaR';
+	grant all privileges on membersdotsocialtriggers.* to 'members'@'localhost' identified by 'nAoJFfrZ7ZgX8v';
+	
+	
+	flush privileges;
+	
+	> select * from whitelist where IP like "%149.109%";
+	> select * from mysql_auth where username like "%cmacmillan%";
+	
+netstat		- print network connections, routing tables, interface stats, masquerade connections, multicase memberships
+	netstat -lnp --tcp		shows what is listening
+	   -l, --listening
+		   Show only listening sockets.  (These are omitted by default.)
+	   -n, --numeric 
+			Show numerical addresses instead of trying to determine symbolic host, port or user names.
+	   -p, --program
+			Show the PID and name of the program to which each socket belongs.
+nginx	-	 /usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf -t
+php
+	php -r 'phpinfo();'
+rpm
+	rpm -qa | grep php
+sed -i -e 's/allowed_hosts=127.0.0.1/allowed_hosts=208.167.226.249/' /etc/nagios/nrpe.cfg
+sysctl
+	-a	
+ssh
+	ssh-copy-id user@h
+sshuttle
+	Transparent proxy server for VPN over SSH
+stat
+strace
+tcpdump
+tracert
+wget
+	wget -qO- --header "Host: stumpygames.com" "http://[2001:19f0:200:13b3:230:48ff:fed3:675d]/foo" 2>&1
+hni52567
+whois
+
+
+=========================================================================
+packages/protocols/etc:
+=========================================================================
+
+ip range:	/etc/sysconfig/network-scripts/
+	ifcfg-eth0-range0
+
+	TYPE=Ethernet
+	ONBOOT=yes
+	NM_CONTROLLED=yes
+	BOOTPROTO=none
+	IPADDR_START=209.222.20.108
+	IPADDR_END=209.222.20.110
+	PREFIX=29
+	CLONENUM_START=0
+
+
+web server config:
+	httpd -S 			shows apache instances and what port / what line of config file
+	netstat -lnp --tcp	shows whats listening on what port
+	
+
+	
+apache
+	HTTP.conf stuff, vhost
+	service httpd configtest
+chkconfig
+cron
+cpanel
+dns
+	change dns linux /etc/resolv.conf
+	pointer	-	 in DNS records; an address points to a name)
+fragemented packets
+ftp
+	vsftp
+	(a little proftpd)
+	(a little pureftp)
+
+haproxy
+
+ipcop
+ioncube
+mail
+	dovecott	POP3/IMAP	
+	{postfix				MTA
+		main.cf
+	{sendmail	SMTP 25,?	MTA
+multicast
+NIS
+open ipmi / ipmitool -	out-of-band management. 
+	-->java thing for this	
+open stack - windows
+permissions fix:
+	find /home/aitcom/public_html/* -type f -exec chmod 644 {} \;
+	find /home/aitcom/public_html/* -type d -exec chmod 755 {} \;
+resolv.conf
+SASL
+sflow
+snmp
+SPF / DKIM 
+sudo
+	give a user passwordless sudo privelage:
+		visudo
+		shakir ALL=NOPASSWD: ALL
+		
+vlan - check which vlan
+	lldpctl
+
+windows - configure a static ip address: http://technet.microsoft.com/en-us/library/cc754203%28v=ws.10%29.aspx
+
+
+====================================================================================
+internal stuff
+====================================================================================
+abuse
+	ping flood! https://administer.vultr.com/tickets/view.php?TICKETID=1976989
+backup
+	bad kernel module, need to recompile https://administer.choopa.com/tickets/view.php?TICKETID=419412
+

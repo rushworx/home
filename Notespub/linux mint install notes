@@ -1,0 +1,69 @@
+todo:
+	windows:	tell it to do 1024x768 default for RDP sessions
+	xfce session?
+	alias for managed
+	firefox:	all clicks in pinned tab to new window
+	configure mail client?
+	figure out why i cant login to admin or webmail
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+install:
+	todo: irssi -> pidgin bridge
+	terminator
+	xfce4-clipman-plugin xfce4-goodies
+	sudo apt-get update; sudo apt-get upgrade
+	putty
+	filezilla
+	virtualbox
+		 * No suitable module for running kernel found
+		deb http://download.virtualbox.org/virtualbox/debian raring contrib;
+		wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add - 
+		make a /etc/apt/preferences:
+			Package: virtualbox-4.3
+			Pin: release n=raring
+			Pin-Priority: 900
+		sudo apt-get install virtualbox-4.3
+		USB extensions?
+		Uninstalling old VirtualBox DKMS kernel modulesError! Could not locate dkms.conf file. 
+		File:  does not exist.
+	htop	
+	chromium
+	wine
+	firefox- network.security.ports.banned.override -> http://www.redbrick.dcu.ie/~d_fens/articles/Firefox:_This_Address_is_Restricted
+	  start up w/o addons
+		sudo cp /usr/share/applications/firefox.desktop /usr/share/applications/firefox-safemode.desktop
+		sudo nano  ... firefox --safe-mode
+		ad block
+	wine (just so i could get the windows 8 installer -> download windows 8 iso.)
+		winetricks. didnt work to do win 8 installer thing anyway
+	clementine
+	terminal: white on black, then green background.
+	geany
+	hibernate
+		http://ubuntuhandbook.org/index.php/2014/04/enable-hibernate-ubuntu-14-04/
+	file manager
+	.desktops from VMs -> into menu
+	chrome http://www.howopensource.com/2011/10/install-google-chrome-in-ubuntu-11-10-11-04-10-10-10-04/
+
+
+config:
+	passwordless sudo: 
+		visudo
+		username ALL=NOPASSWD: ALL
+	centosvm:
+		https://hemantnemade.wordpress.com/2012/09/20/disable-network-manager-service-in-centos-6/
+		manually set static ip http://wiki.centos.org/FAQ/CentOS6
+	firefox addon 'add to search bar'
+		disable speeddial		browser.newtab.url		=	about:blank
+		disalbe http:// hide	browser.urlbar.trimURLs	=	false
+	todo:disable notifications pidgin
+	terminator
+		background #002A10, .9 transparency
+		ambience
+	monitor span view
+	xfce
+		snap-	window manager > advanced > 'wrap workspaces'
+		panel-	'dont reserve space on borders'
+	browser- default search, adblock
+	

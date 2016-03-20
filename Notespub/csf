@@ -1,0 +1,6 @@
+disable csf service:
+csf -x
+
+remove csf:
+cd /etc/csf
+sh uninstall.sh

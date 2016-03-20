@@ -1,0 +1,14 @@
+downloaders, disable
+===========
+	wget
+	lynx
+	cetc
+
+
+php
+===
+	allow_url_fopen turned off
+
+cpanel
+======
+	/scripts/compilers off

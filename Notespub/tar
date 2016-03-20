@@ -1,0 +1,3 @@
+tar with progress
+------------------
+ tar czf - Pictures/ | pv > pics.tgz

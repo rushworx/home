@@ -1,0 +1,6 @@
+  44  echo -n '#Distribution:';cat /etc/issue |head -1|tr -d "\n"|tr -d "\r";   printf '\x3E'
+   45  echo -n '#Cpanel Version:';rpm -qa |grep -i cpanel|head -1|tr -d "\n"|tr -d "\r";   printf '\x3E'
+
+||	config file strip nonsense	||
+==================================
+egrep -v '^#|^$' lighttpd.conf | less

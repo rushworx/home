@@ -1,0 +1,28 @@
+sendmail test
+==============
+echo 'this is a test'| mail -s test_email root@madru.sh
+
+
+FQDN thing
+=============================================================
+bogus email reverse dns thing:	11.22.33.44.somesite.com
+
+# tail -n 30 /var/log/maillog | grep "Jun  2 16:17:00"
+Jun  2 16:17:00 ID16252 postfix/qmgr[6278]: 5FA50804A3: from=<apache@some.thing.com>, size=1334, nrcpt=1 (queue active)
+Jun  2 16:17:00 ID16252 postfix/qmgr[6278]: 5B6D2804A5: from=<apache@some.thing.com>, size=1269, nrcpt=1 (queue active)
+Jun  2 16:17:00 ID16252 postfix/smtp[22928]: 5B6D2804A5: host mx2.other.place.com[123.123.123.123] said: 450 4.1.8 <apache@some.thing.com>: Sender address rejected: Domain not found (in reply to RCPT TO command)
+Jun  2 16:17:00 ID16252 postfix/smtp[22927]: 5FA50804A3: host mx3.other.place.com[108.61.82.133] said: 450 4.1.8 <apache@some.thing.com>: Sender address rejected: Domain not found (in reply to RCPT TO command)
+Jun  2 16:17:00 ID16252 postfix/smtp[22928]: connect to somebullshit.com[64.237.40.139]:25: Connection refused
+Jun  2 16:17:00 ID16252 postfix/smtp[22927]: 5FA50804A3: to=<support@somebullshit.com>, relay=mx2.other.place.com[123.123.123.123]:25, delay=105579, delays=105579/0.01/0.06/0.02, dsn=4.1.8, status=deferred (host mx2.other.place.com[123.123.123.123] said: 450 4.1.8 <apache@some.thing.com>: Sender address rejected: Domain not found (in reply to RCPT TO command))
+Jun  2 16:17:00 ID16252 postfix/smtp[22928]: 5B6D2804A5: to=<support@somebullshit.com>, relay=mx4.other.place.com[123.123.123.123]:25, delay=105467, delays=105467/0/0.07/0.01, dsn=4.1.8, status=deferred (host mx4.other.place.com[123.123.123.123] said: 450 4.1.8 <apache@some.thing.com>: Sender address rejected: Domain not found (in reply to RCPT TO command))
+
+1. host name on server
+	nano /etc/sysconfig/network; hostname server.somebullshit.com
+	
+2. add reverse DNS e.g.
+ server.somebullshit.com
+ 
+3. spf record
+	"v=spf1 a mx ~all"			Type=TXT
+	
+	

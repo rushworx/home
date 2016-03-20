@@ -1,0 +1,4 @@
+robocopy c: e: /MIR /EFSRAW /XD Windows /XF pagefile.sys "C:\Backups\Carbonite DatabaseBackup" "C:\Boot"
+
+ignore:
+c:\backups\carbonite databasebackup\

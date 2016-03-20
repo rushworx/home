@@ -1,0 +1,26 @@
+what config file?
+==============
+php can tell you what config file its compiled to use
+php -i | grep config
+
+hotlink protect
+====================
+PHP Example
+URL that we would like to encrypt and expire: http://domain.com/1/2/video.mpeg
+
+PHP Code
+<?php
+$secret = '89nwPUp9ZMaT0izxtFRYEEoqEY0g'; // Enter a secret key.
+$path = urlencode('/1/2/video.mpeg');  // Enter the file path.
+$expire = dechex(time() + 900);     // Sets a 15 minute expiration
+$hash = md5($path . '/' . $secret . '/' . $expire);
+$url = 'http://domain.com'  // Enter the Base URL.
+. $path . '?h=' . $hash . '&e=' . $expire;
+?>
+
+This outputs an encrypted URL with a 15 minute expiration to the $url variable.
+
+
+
+
+

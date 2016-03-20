@@ -1,0 +1,31 @@
+replace line with contents of file
+==================================
+sed -i '/somestring/r doodoo' somefile
+							^-contents of file doodoo replace line somestring in file somefile
+
+remove all non-numbers???:
+========================
+sed 's/.* //'
+
+
+
+sed -i -e 's/allowed_hosts=127.0.0.1/allowed_hosts=208.167.226.249/' /etc/nagios/nrpe.cfg
+
+
+sed "s/HOSTNAME=srvUNKNOWN/`echo $HOSTNAME`/" fuckshit
+
+
+sed -i "s/srvUNKNOWN/$HOSTNAME/g" /etc/sysconfig/network
+
+s
+
+
+
+remove everything after a pattern
+=================================
+sed 's/Bcast.*//'
+
+
+remove all preceeding whitespace
+=================================
+ sed -e 's/^[ \t]*//'

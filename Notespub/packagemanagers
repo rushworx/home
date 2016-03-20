@@ -1,0 +1,11 @@
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\	yum			\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+what packages are in a repo?
+----------------------------
+yum --disablerepo="*" --enablerepo="rpmforge" list available|less
+
+what repos installed?
+---------------------
+yum repolist

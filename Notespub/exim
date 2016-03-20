@@ -1,0 +1,11 @@
+exim -bt user@domain.com
+
+how to read 'exim -bp'
+----------------------
+http://www.electrictoolbox.com/show-exim-mail-queue/
+
+4d  1.2K 1Ka6u5-00032Z-Eb <from@example.com>
+
+	          to@example.com
+
+exim_tidydb - free up some space

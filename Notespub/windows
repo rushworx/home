@@ -1,0 +1,4 @@
+SxS
+---
+side by side, introduced in vista to mitigate DLL hell. allows for multiple versions of same dll.  
+also ends up storing windows update cruft. windows update allows for rollbacks, how to clear those out?

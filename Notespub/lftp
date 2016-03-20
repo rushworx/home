@@ -1,0 +1,5 @@
+mirror download
+================
+lftp -e 'set ftp:passive-mode false; mirror -c /Dream ./' -u Dream,2Paaaaass! somesitedotnet.com
+
+http://www.russbrooks.com/2010/11/19/lftp-cheetsheet

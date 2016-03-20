@@ -1,0 +1,5 @@
+find the route to the internet:
+	$ ip route get 8.8.8.8
+8.8.8.8 via 10.6.6.1 dev eth0  src 10.6.6.65 
+    cache 
+

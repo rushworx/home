@@ -1,0 +1,34 @@
+
+On your server in /public_html/test.php
+
+I've put comments and explanations inside test.php
+
+
+<?php
+
+// Load Predis
+require "predis/autoload.php";
+Predis\Autoloader::register();
+
+// Connect to Redis via Predis
+try {
+    $redis = new Predis\Client();
+    echo "Successfully connected to Redis";
+}
+catch (Exception $e) {
+    echo "Couldn't connected to Redis";
+    echo $e->getMessage();
+}
+
+// Increment key "test_PageViews" value on each page load
+$redis->incr("test_PageViews");
+
+// Get key value
+$pageViews = $redis->get("test_PageViews");
+
+echo "<br /><br />";
+echo "Total page views:".$pageViews;
+echo "<br /><br />";
+echo "Each time you refresh the page, another page view is added.";
+
+?>

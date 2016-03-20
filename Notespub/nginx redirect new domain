@@ -1,0 +1,18 @@
+server {
+    server_name *.old.com;
+    return 301 $scheme://foonew.com$request_uri;
+}
+
+server {                                                                             
+    server_name new.com www.new.com;
+
+    listen 80;
+
+    root /var/www/new.com/;
+}
+
+server {
+    listen       80 default_server;
+    server_name  _;
+    rewrite ^ $scheme://mostextremenews.com$request_uri permanent;
+}

@@ -1,0 +1,14 @@
+ceph osd dump | grep osd.13
+
+ceph health -w
+
+ceph health detail must be run from mon. 
+
+# ceph health detail
+HEALTH_ERR 1 pgs inconsistent; 1 scrub errors
+pg 3.187 is active+clean+inconsistent, acting [56,3]
+1 scrub errors
+
+# ceph pg repair 3.187
+instructing pg 3.187 on osd.56 to repair
+

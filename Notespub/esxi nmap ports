@@ -1,0 +1,18 @@
+carl@CarlDesktop ~ $ nmap 208.167.236.107
+
+Starting Nmap 6.40 ( http://nmap.org ) at 2015-01-07 12:41 EST
+Nmap scan report for 208.167.236.107.choopa.com (208.167.236.107)
+Host is up (0.014s latency).
+Not shown: 989 filtered ports
+PORT     STATE  SERVICE
+22/tcp   open   ssh
+80/tcp   open   http
+427/tcp  closed svrloc
+443/tcp  open   https
+902/tcp  open   iss-realsecure
+5988/tcp closed wbem-http
+5989/tcp open   wbem-https
+8000/tcp open   http-alt
+8080/tcp closed http-proxy
+8100/tcp closed xprint-server
+8300/tcp closed tmi

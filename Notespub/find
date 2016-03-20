@@ -1,0 +1,38 @@
+find big files:
+================
+sudo find / -type f -size +500M -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
+
+older than 6 mo
+=============== needs some (tweaking)
+find /home/www/www.megaturds.com/m/temp/ -type f -mtime +180 | xargs rm
+find /home/www/www.megaturds.com/m/temp/* -mtime +180 -exec rm {} \;
+find /home/www/www.megaturds.com/m/* -empty -type d -delete
+find /home/www/www.megaturds.com/m/* -type d -empty -exec rmdir {} \;
+
+
+
+
+
+
+what dbs are in use by word press sites
+=======================================
+find /home/admin/sites -type f -name "wp-config.php" -exec grep "define('DB_NAME'," {} \;
+
+
+
+
+move all folders
+=================
+find . -type d -exec mv {} /root/mysql-backup/ \;
+
+
+disk usage sum on find list
+==========================
+# find /home/admin/sites/someshittysite.com/htdocs/flv/ -type f -name "original*" -print0|xargs -r0 du -chs | tail -n 1
+44G     total
+
+
+
+find exe, exclude windows
+==========================
+find ./ -name Windows -prune -o -iname *exe -print

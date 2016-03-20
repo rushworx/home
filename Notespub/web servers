@@ -1,0 +1,21 @@
+www httpd permissions fix:
+	find /home/admin/sites/* -type f -exec chmod 644 {} \;
+	find /home/aitcom/public_html/* -type d -exec chmod 755 {} \;
+	
+	
+web server config:
+	httpd -S 			shows apache instances and what port / what line of config file
+	netstat -lnp --tcp	shows whats listening on what port
+	
+	
+cacheing
+========
+	apachebench for performance testing
+
+
+performance
+===========
+Query cache for MyISAM tables
+best performing sites have less than 200 Requests and are under 2 MB [on their front page]
+
+I would review and make sure your plugins are updated. Plugins like "related posts" or "popular posts" tend to be very heavy. That could cause un-wanted load should you receive a lot of users.

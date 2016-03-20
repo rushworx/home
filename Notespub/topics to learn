@@ -1,0 +1,143 @@
+ldconfig
+sysdig 
+flock - file lock tool
+aqmp -
+
+
+
+
+==============
+shell commands:
+==============
+lftp - good cli ftp client
+grep
+	 magic grep version string finder
+		find /var/www/html/*/htdocs -type f -name version.php -exec egrep -H '^\$wp_version' {} \; |fgrep -v 3.9.1
+host	-	DNS lookup utility
+kill 	http://www.linux.org/threads/kill-commands-and-signals.4423/
+	killall
+	pkill	partial name matches!
+	xkill	thru x!
+maldet	-	linux malware detect.. for shared hosting environments
+	maldet --scan-all /home/?/public_html
+
+	
+netstat		- print network connections, routing tables, interface stats, masquerade connections, multicase memberships
+	netstat -lnp --tcp		shows what is listening
+	   -l, --listening
+		   Show only listening sockets.  (These are omitted by default.)
+	   -n, --numeric 
+			Show numerical addresses instead of trying to determine symbolic host, port or user names.
+	   -p, --program
+			Show the PID and name of the program to which each socket belongs.
+php
+	php -r 'phpinfo();'
+raid
+	megacli
+	
+	smartctl -a -d sat+megaraid,0 /dev/sda
+rpm
+	rpm -qa | grep php
+sysctl
+	-a	
+ssh
+	ssh-copy-id user@h
+sshuttle
+	Transparent proxy server for VPN over SSH
+stat
+strace
+tcpdump
+tracert
+https://en.wikipedia.org/wiki/Monit
+
+
+=========================================================================
+packages/protocols/etc:
+=========================================================================
+ansible,clusterssh,fabric?old,salt(google)
+puppet+chef
+
+sphinx search - seperate machine from mysql box!
+
+nf_conntrack
+	http://security.stackexchange.com/questions/43205/nf-conntrack-table-full-dropping-packet
+	https://developers.soundcloud.com/blog/shoot-yourself-in-the-foot-with-iptables-and-kmod-auto-loading
+
+dns delegation
+	reverse DNS -> NS instead of PTR
+	https://administer.choopa.com/tickets/view.php?TICKETID=426465
+	https://administer.choopa.com/dns/edit_reverse.php?subnet=108.61.32.0
+
+	
+
+ip range:	/etc/sysconfig/network-scripts/
+	ifcfg-eth0-range0
+
+	TYPE=Ethernet
+	ONBOOT=yes
+	NM_CONTROLLED=yes
+	BOOTPROTO=none
+	IPADDR_START=209.222.20.108
+	IPADDR_END=209.222.20.110
+	PREFIX=29
+	CLONENUM_START=0
+
+
+web server config:
+	httpd -S 			shows apache instances and what port / what line of config file
+	netstat -lnp --tcp	shows whats listening on what port
+	
+
+	
+apache
+	HTTP.conf stuff, vhost
+	service httpd configtest
+chkconfig
+cron
+cpanel
+dns
+	change dns linux /etc/resolv.conf
+	pointer	-	 in DNS records; an address points to a name)
+fragemented packets
+ftp
+	vsftp
+	(a little proftpd)
+	(a little pureftp)
+
+haproxy
+
+ipcop
+ioncube
+mail
+	dovecott	POP3/IMAP	
+	{postfix				MTA
+		main.cf
+	{sendmail	SMTP 25,?	MTA
+multicast
+NIS
+open ipmi / ipmitool -	out-of-band management. 
+	-->java thing for this	
+open stack - windows
+permissions fix:
+	find /home/aitcom/public_html/* -type f -exec chmod 644 {} \;
+	find /home/aitcom/public_html/* -type d -exec chmod 755 {} \;
+resolv.conf
+ram in linux / free command
+	http://www.linuxatemyram.com/
+	http://www.linuxnix.com/2013/05/find-ram-size-in-linuxunix.html
+
+SASL
+sflow
+snmp
+SPF / DKIM 
+sudo
+	give a user passwordless sudo privelage:
+		visudo
+		shakir ALL=NOPASSWD: ALL
+		
+vlan - check which vlan
+	lldpctl
+
+windows - configure a static ip address: http://technet.microsoft.com/en-us/library/cc754203%28v=ws.10%29.aspx
+
+

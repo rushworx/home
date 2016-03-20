@@ -1,0 +1,6 @@
+apt-get install .*-icon-themes
+
+yum whatprovides , what package provides a command?
+===================================================
+apt-file search smartctl
+

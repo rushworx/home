@@ -1,0 +1,12 @@
+||================================================================================||
+||		noatime																	  ||
+||================================================================================||
+ Linux records information about when files were created and last modified as well as when it was last accessed. There is a cost associated with recording the last access time. The ext2 file system of Linux has an attribute that allows the super-user to mark individual files such that their last access time is not recorded. This may lead to significant performance improvements on often accessed frequently changing files
+	
+	fstab:
+	/dev/sda7          /chroot          ext2          defaults,noatime          1  2
+
+	individual folders:
+	chattr -R +A  /var/spool/	
+		When  a file with the 'A' attribute set is accessed, its atime record is not modified.  This avoids a certain amount of disk I/O for laptop systems.
+

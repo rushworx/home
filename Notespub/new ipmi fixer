@@ -1,0 +1,3 @@
+sed s/"   </resources>"/"    <property name="jnlp.packEnabled" value="true"/>
+    <property name="jnlp.versionEnabled" value="true"/>
+   </resources>"

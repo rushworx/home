@@ -1,0 +1,19 @@
+list bare srvid
+----------------
+virsh list --all |tail -n +3| awk '{print $2}'|grep -v '^$'
+
+
+show macs 
+-----------
+for vm in `virsh list --all |tail -n +3| awk '{print $2}'|grep -v '^$'`; do virsh dumpxml $vm |grep 'mac address'; done | sed 's/://g'
+
+show all ips and macs
+---------------------
+for vm in `virsh list --all |tail -n +3| awk '{print $2}'|grep -v '^$'`; do virsh dumpxml $vm |egrep 'main_ip|address prefix|mac address'; done | sed 's/://g'
+
+
+<main_ip>
+<mac address
+
+
+address prefix

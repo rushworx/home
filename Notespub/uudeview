@@ -1,0 +1,10 @@
+uudeview -i +a -e .php.html -p /web /var/spool/mail/root
+
+-i		Disables interactivity. After scanning the files and sorting everything out, the program will not promt you for whether a file shall be decoded or not, but batch-decodes all available  files.
++a		If a target file already exists, an underscore and a unique number is inserted into the filename before the first dot
+-e		no php, no html
+
+
+
+
+-m     Ignore  file  mode.  Uuencoded  and xxencoded files have the original file permissions stored on the begin line. Unless this option is given, UUDeview will restore them without checking if they are sensible. With this option, the permissions are reset to a default of 0666.

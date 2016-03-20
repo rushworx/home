@@ -1,0 +1,33 @@
+/etc/openvpn/server.conf
+
+
+client cli:
+------------
+openvpn --config client.ovpn
+
+
+config file:
+------------
+client.ovpn (original:  /usr/share/doc/openvpn/examples/sample-config-files/client.conf)
+
+client1.crt
+client1.key
+client.ovpn
+ca.crt
+
+
+
+sed 's\insertCaCrtHere\$(cat ca.crt)\g'
+sed 's\insertClientCrtHere\$(cat `hostname`.crt)\g'
+sed 's\insertClientKeyHere\$(cat `hostname`.key)\g'
+
+
+<ca>
+insertCaCrtHere
+</ca>
+<cert>
+insertClientCrtHere
+</cert>
+<key>
+insertClientKeyHere
+</key>

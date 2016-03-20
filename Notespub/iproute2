@@ -1,0 +1,19 @@
+add/remove a route
+=========================
+ip route del 192.168.46.79/32
+
+
+add static route
+==========================
+internal network example:
+ip route add 10.0.0.0/8 via 10.200.0.130 dev eth1
+								^ip on eth1
+
+add ip
+======
+ip addr add 192.168.60.1/24 dev br0
+
+
+magic 169.254 bullshit
+==========================
+ip addr show dev br0 scope global

@@ -1,0 +1,9 @@
+ssh port forward - for firewall / nat traversal
+================
+ssh -R carlpmac.me:22222:localhost:22 user@carlpmac.me
+remote -^  listens on-^  and forwards-^
+
+SOCKS proxy, for web browser:
+=============================
+$ ssh -D 12345 user@carlpmac.me -p 22222
+point browser proxy settings to SOCKS at 127.0.0.1:12345 

@@ -1,0 +1,20 @@
+To help us troubleshoot any network issue the following information is REQUIRED:
+
+Do you notice the performance is better at some times than others?
+
+What is the IP address (or website) on our network you are attempting to reach?
+
+What is the remote IP address (your IP: http://speedtest.reliableservers.com)?
+
+Please paste a traceroute from the testing machine to our IP:
+Step 1. Start->run and then type in 'cmd' in the box, and press ENTER.
+
+Step 2. Type 'tracert SERVER IP' in the window. For example: tracert 208.167.226.230
+
+Step 3. Copy and paste the information back into this ticket.
+
+Note, if you cannot cut and paste, right click on the window's title bar, choose properties and click the option 'Quick Edit'
+
+The information you provide may help resolve the issue you have reported.
+
+Thank you!

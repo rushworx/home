@@ -1,0 +1,3 @@
+echo stats | nc 127.0.0.1 11211
+echo "stats settings" | nc localhost 11211
+

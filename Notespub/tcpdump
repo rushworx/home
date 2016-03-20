@@ -1,0 +1,14 @@
+
+tcpdump -i eth0 ether host 0w:w4:7a:36:5f:q8
+
+
+
+
+
+
+
+test a migrated web server .. determine if browser is really pointing to the new site:
+=======================================================================================
+tcpdump -n not port 2087 and host 11.22.33.44
+
+

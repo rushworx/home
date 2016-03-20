@@ -1,0 +1,3 @@
+rsync -av --progress --exclude-from=/root/exclude-list /home 10.10.10.20:/home
+						     src-^		^-destination
+no trailing slashes!

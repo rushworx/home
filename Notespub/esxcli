@@ -1,0 +1,30 @@
+
+show IPs
+--------
+esxcli network ip interface ipv4 get
+
+set ip
+--------
+
+esxcli network ip interface ipv4 set -i vmk0 -I 209.222.0.51 -N 255.255.255.248 -t static
+
+
+
+todo:
+-----
+figure out how to change esxi shell timeout!
+
+is this the VM's mac? 47:23
+
+
+
+
+
+
+update version - latest is VMware ESXi 5.5 Update 2 (Build 2068190)
+--------------
+vmware -v
+VMware ESXi 5.5.0 build-1623387
+
+scp update-from-esxi5.5-5.5_update02.zip root@host:/someplacewithspace
+~ # esxcli software vib install -d /someplacewithspace/update-from-esxi5.5-5.5_update02.zip

@@ -1,0 +1,10 @@
+crontab -e
+
+*/2 * * * * /usr/bin/php -q  /home/scan/nexxx.com/htdocs/st/admin/cron.php -server 1 > /dev/null 2>&1
+* * * * * /bin/nice /usr/bin/php -q  /home/scan/nexxx.com/htdocs/st/admin/autocrop.php > /dev/null 2>&1
+* * * * * /bin/nice /usr/bin/php -q  /home/scan/nexxx.com/htdocs/st/admin/check.php > /dev/null 2>&1
+*/60 * * * * /bin/nice /usr/bin/php -q /home/scan//nexxx.com/htdocs/admin/cronPublish.php > /dev/null 2>&1
+
+last one runs every 60 minutes with worse priority than usual
+
+https://www.centos.org/docs/5/html/Deployment_Guide-en-US/ch-autotasks.html

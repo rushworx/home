@@ -1,0 +1,7 @@
+hotlink protection with nginx?
+-----------------------------
+https://www.nginx.com/resources/wiki/start/topics/examples/xsendfile/
+http://stackoverflow.com/questions/7917851/generate-ip-and-time-limited-download-link
+
+http://www.iredmail.org/
+https://code.google.com/p/lsyncd/

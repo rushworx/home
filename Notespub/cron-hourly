@@ -1,0 +1,81 @@
+# cat /etc/cron.hourly/logrotate-hourly 
+#!/bin/sh
+
+/usr/sbin/logrotate /etc/logrotate-hourly.conf >/dev/null 2>&1
+EXITVALUE=$?
+if [ $EXITVALUE != 0 ]; then
+    /usr/bin/logger -t logrotate "ALERT exited abnormally with [$EXITVALUE]"
+fi
+exit 0
+
+# cat /etc/logrotate-hourly.conf 
+# lots of web traffic, logs need to be rotated more frequently than daily
+
+/var/log/nginx/*.log {
+        hourly
+        size    50M
+        rotate  24
+       
+        create
+        dateext
+        missingok
+        notifempty
+        compress
+        create 640 nginx adm
+        sharedscripts
+        postrotate
+                [ -f /var/run/nginx.pid ] && kill -USR1 `cat /var/run/nginx.pid`
+        endscript
+}
+
+/home/admin/logs/*log {
+        hourly
+        size    50M
+        rotate  24
+
+        missingok
+        rotate 24
+        compress    
+        notifempty
+        sharedscripts
+        postrotate
+                /sbin/service httpd reload > /dev/null 2>/dev/null || true
+        endscript
+}
+
+
+
+
+# rotate log files weekly
+weekly
+
+# keep 4 weeks worth of backlogs
+rotate 4
+
+# create new (empty) log files after rotating old ones
+create
+
+# use date as a suffix of the rotated file
+dateext
+
+# uncomment this if you want your log files compressed
+#compress
+
+# RPM packages drop log rotation information into this directory
+include /etc/logrotate.d
+
+# no packages own wtmp and btmp -- we'll rotate them here
+/var/log/wtmp {
+    monthly
+    create 0664 root utmp
+        minsize 1M
+    rotate 1
+}
+
+/var/log/btmp {
+    missingok
+    monthly
+    create 0600 root utmp
+    rotate 1
+}
+

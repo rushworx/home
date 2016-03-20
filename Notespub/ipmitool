@@ -1,0 +1,58 @@
+modules needed:
+===================
+yum -y install ipmitool
+sudo apt-get install ipmitool
+modprobe ipmi_devintf
+modprobe ipmi_si
+modprobe ipmi_msghandler
+
+[root@atl177 ~]# lsmod | grep ipmi
+ipmi_devintf           17597  0 
+ipmi_si                53686  0 
+ipmi_msghandler        45945  2 ipmi_devintf,ipmi_si
+
+ipmitool sel list
+
+ipmitool lan print
+ipmitool lan print -I lan -U ADMIN -P ADMIN -H
+
+ipmitool chassis bootparam set bootflag force_pxe -I lan -U ADMIN -P ADMIN -H 
+ipmitool chassis bootdev pxe -I lan -U ADMIN -P ADMIN -H 
+
+ipmitool chassis status -I lan -U ADMIN -P ADMIN -H 192.168.89.111
+ipmitool chassis power on -I lan -U ADMIN -P ADMIN -H 192.168.88.63
+ipmitool chassis power reset -H 10.237.10.69 -U ADMIN -P Y96LpsnWNyKBNf 
+
+ipmitool mc reset cold -I lan  -U ADMIN -P ADMIN -H 10.247.2.166
+ipmitool mc reset cold -I lan  -U ADMIN -P $PASS -H $IP
+
+bmc-config -o | less
+
+ipmitool chassis bootdev cdrom 
+
+
+IP=192.168.89.208;
+ipmitool chassis bootparam set bootflag force_pxe -I lan -U ADMIN -P ADMIN -H $IP;
+sleep 5;
+ipmitool chassis power reset -I lan -U ADMIN -P ADMIN -H $IP;
+
+
+alias ipmimcreset='ipmitool mc reset cold -I lan -U ADMIN -P ADMIN -H'
+alias ipmibios='ipmitool chassis bootparam set bootflag force_bios -I lan -U ADMIN -P ADMIN -H'
+alias ipmireboot='ipmitool chassis power reset -I lan -U ADMIN -P ADMIN -H'
+
+password:
+--------
+[root@nj1673 ~]# ipmitool user list
+ID  Name             Callin  Link Auth  IPMI Msg   Channel Priv Limit
+2   ADMIN            true    false      false      Unknown (0x00)
+[root@nj1673 ~]# ipmitool user set password 2
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+windows smc tool \
+------------------\
+
+reset password
+===============
+ipmicfg -user list
+ipmicfg -user setpwd id pass

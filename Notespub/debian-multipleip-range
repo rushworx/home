@@ -1,0 +1,4 @@
+post-up for n in $(seq 98 102); do ip addr add 64.237.34.$n/29 dev p2p1 label p2p1:TSES2497; done
+post-down for n in $(seq 98 102); do ip addr del 64.237.34.$n/29 dev p2p1 label p2p1:TSES2497; done
+
+873

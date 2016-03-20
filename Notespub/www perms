@@ -1,0 +1,3 @@
+permissions fix:
+	find /home/aitcom/public_html/* -type f -exec chmod 644 {} \;
+	find /home/aitcom/public_html/* -type d -exec chmod 755 {} \;

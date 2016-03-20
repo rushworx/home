@@ -1,0 +1,9 @@
+http://nginx.org/en/docs/http/server_names.html#regex_names
+
+server {
+    server_name   ~^(www\.)?(?<domain>.+)$;
+
+    location / {
+        root   /sites/$domain;
+    }
+}

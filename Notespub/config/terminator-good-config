@@ -1,0 +1,93 @@
+[global_config]
+  enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+  tab_position = hidden
+  borderless = True
+[keybindings]
+[profiles]
+  [[blue]]
+    scrollbar_position = hidden
+    use_system_font = False
+    background_darkness = 0.84
+    background_type = transparent
+    background_image = None
+    foreground_color = "#ffffff"
+    show_titlebar = False
+    font = Monospace 8
+    background_color = "#16253e"
+  [[brown]]
+    scrollbar_position = hidden
+    use_system_font = False
+    background_darkness = 0.89
+    background_type = transparent
+    background_image = None
+    foreground_color = "#ffffff"
+    show_titlebar = False
+    font = Monospace 8
+    background_color = "#372a20"
+  [[default]]
+    scrollbar_position = hidden
+    use_system_font = False
+    background_darkness = 0.92
+    background_type = transparent
+    background_image = None
+    foreground_color = "#ffffff"
+    show_titlebar = False
+    font = Monospace 8
+  [[purple]]
+    scrollbar_position = hidden
+    use_system_font = False
+    background_darkness = 0.86
+    background_type = transparent
+    background_image = None
+    foreground_color = "#ffffff"
+    icon_bell = False
+    show_titlebar = False
+    font = Monospace 8
+    background_color = "#260042"
+  [[pink]]
+    scrollbar_position = hidden
+    use_system_font = False
+    background_darkness = 0.77
+    background_type = transparent
+    foreground_color = "#ffffff"
+    show_titlebar = False
+    font = Monospace 8
+    background_color = "#880067"
+  [[black]]
+    scrollbar_position = hidden
+    use_system_font = False
+    background_darkness = 0.88
+    background_type = transparent
+    background_image = None
+    foreground_color = "#ffffff"
+    show_titlebar = False
+    font = Monospace 8
+  [[green]]
+    scrollbar_position = hidden
+    use_system_font = False
+    background_darkness = 0.88
+    background_type = transparent
+    background_image = None
+    foreground_color = "#ffffff"
+    show_titlebar = False
+    font = Monospace 8
+    background_color = "#021502"
+  [[red]]
+    scrollbar_position = hidden
+    use_system_font = False
+    background_darkness = 0.89
+    background_type = transparent
+    background_image = None
+    foreground_color = "#ffffff"
+    show_titlebar = False
+    font = Monospace 8
+    background_color = "#360000"
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+    [[[window0]]]
+      type = Window
+      parent = ""
+[plugins]

@@ -1,0 +1,3 @@
+find parent pid:
+	ps -o ppid= -p 15778
+

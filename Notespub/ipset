@@ -1,0 +1,17 @@
+ <    > | @C You want to use ipset for cases like that                                             
+ <    > | iptables does not scale well with lots of rules                                             2 IRSSIFIFO
+ <    > | look at one of the vultr ceph OSDs for an example                                        gregoneill.log
+ <    > | [root@nj1232 ~]# iptables-save | grep set                                                #choopa.log
+ <    > | -A INPUT -p tcp -m set --match-set ceph_hosts src -m multiport --dports 6789,6800:7100   #sysadmin.log
+          -m comment --comment "ceph nodes" -j ACCEPT                                                           #icinga.log
+ <    > | [root@nj1232 ~]# ipset list | head                                                       
+ <    > | Name: ceph_hosts                                                                         
+ <    > | Type: hash:ip                                                                            
+ <    > | Header: family inet hashsize 1024 maxelem 65536                                          
+ <    > | Size in memory: 17504                                                                    
+ <    > | References: 1                                                                            
+ <    > | Members:                                                                                 
+ <    > | 208.167.253.170                                                                          
+ <    > | 208.167.229.54                                                                           
+ <    > | 66.55.139.44                                                                             
+ <    > | 208.167.229.37                                  

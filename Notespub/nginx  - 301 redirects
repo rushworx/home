@@ -1,0 +1,34 @@
+e.g.
+
+rewrite ^/questions/?$ https://www.doodoo.com/s/V6KVQ9J permanent;
+
+[root@server ~]# diff -ur /etc/nginx/conf.d/asshole.com.conf-VNF-13056 /etc/nginx/conf.d/asshole.com.conf
+--- /etc/nginx/conf.d/asshole.com.conf-VNF-13056 2014-06-04 15:26:28.331262647 -0400
++++ /etc/nginx/conf.d/asshole.com.conf   2014-07-31 11:53:43.939222538 -0400
+@@ -145,6 +145,7 @@
+rewrite ^/getbschool/?$ http://dickbrain/join-us/?orid=50456&opid=112;
+rewrite ^/sybr/?$ http://asshole.com/join/startyourblog/ permanent;
+rewrite ^/exclusive/free5000subscribers/?$ http://asshole.com/exclusive/5ksubsebook/ permanent;
++               rewrite ^/questions/?$ https://www.doodoo.com/s/V6KVQ9J permanent;
+
+}
+
+[root@server ~]# nginx -c /etc/nginx/nginx.conf -t
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+[root@server ~]# nginx -s reload
+
+mhoran@rhadamanthys ~ % wget -SO/dev/null http://asshole.com/questions 2>&1 |egrep -m1 \^Location:
+Location: https://www.doodoo.com/s/V6KVQ9J [following]
+mhoran@rhadamanthys ~ % wget -SO/dev/null http://asshole.com/questions/ 2>&1 |egrep -m1 \^Location:
+Location: https://www.doodoo.com/s/V6KVQ9J [following]
+mhoran@rhadamanthys ~ % wget -SO/dev/null http://www.asshole.com/questions 2>&1 |egrep -m1 \^Location:
+Location: https://www.doodoo.com/s/V6KVQ9J [following]
+mhoran@rhadamanthys ~ % wget -SO/dev/null http://www.asshole.com/questions/ 2>&1 |egrep -m1 \^Location:
+Location: https://www.doodoo.com/s/V6KVQ9J [following]
+
+see ticket: 
+https://administer.choopa.com/tickets/view.php?TICKETID=423717
+
+
+

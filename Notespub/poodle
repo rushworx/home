@@ -1,0 +1,16 @@
+In case anybody hasn't read up on this yet / gets questions from clients:
+
+https://www.openssl.org/~bodo/ssl-poodle.pdf
+http://googleonlinesecurity.blogspot.com/2014/10/this-poodle-bites-exploiting-ssl-30.html
+
+Executive Summary:
+
+SSL 3.0 protocol is obsolete and insecure yet still widely used for compatibility despite being some 18 yrs old. The POODLE vulnerability specifically describes a man in the middle attack.
+
+Disabling SSL 3.0 on either client or server will suffice to secure against the attack. However, for legacy systems that rely on it there exists no solution.
+
+WHM:
+http://www.liquidweb.com/kb/how-to-disable-sslv3-and-protect-your-whmcpanel-server-from-poodle/
+
+https://www.tinfoilsecurity.com/poodle
+

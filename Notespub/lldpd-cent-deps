@@ -1,0 +1,6 @@
+warning: lldpd-0.7.9-1.1.x86_64.rpm: Header V3 DSA/SHA1 Signature, key ID 72e0a4f6: NOKEY
+error: Failed dependencies:
+	libnetsnmp.so.20()(64bit) is needed by lldpd-0.7.9-1.1.x86_64
+	libnetsnmpagent.so.20()(64bit) is needed by lldpd-0.7.9-1.1.x86_64
+	libnetsnmphelpers.so.20()(64bit) is needed by lldpd-0.7.9-1.1.x86_64
+	libnetsnmpmibs.so.20()(64bit) is needed by lldpd-0.7.9-1.1.x86_64

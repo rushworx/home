@@ -1,0 +1,3 @@
+flash new firmware:
+
+sudo teensy_loader_cli --mcu=atmega32u4 /home/carl/newestergodox.hex

@@ -1,0 +1,4 @@
+yum install ftp://ftp.pbone.net/mirror/ftp5.gwdg.de/pub/opensuse/repositories/home:/adam__bishop:/moonshot/CentOS_CentOS-6/x86_64/libevent-devel-2.0.13-14.2.x86_64.rpm
+yum install ftp://ftp.pbone.net/mirror/ftp5.gwdg.de/pub/opensuse/repositories/home:/adam__bishop:/moonshot/CentOS_CentOS-6/x86_64/libevent-2.0.13-14.2.x86_64.rpm
+
+

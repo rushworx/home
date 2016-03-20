@@ -1,0 +1,29 @@
+passive ftp firewall problem
+=============================
+(internal) Carl Macmillan: Status: Resolving address of ftp.iliketocrap.com
+Status: Connecting to 222.111.222.111:21...
+Status: Connection established, waiting for welcome message...
+Response: 220---------- Welcome to Pure-FTPd [privsep] [TLS] ----------
+Response: 220-You are user number 4 of 50 allowed.
+Response: 220-Local time is now 17:45. Server port: 21.
+Response: 220-This is a private system - No anonymous login
+Response: 220-IPv6 connections are also welcome on this server.
+Response: 220 You will be disconnected after 15 minutes of inactivity.
+Command: USER boss@iliketocrap.com
+Response: 331 User boss@iliketocrap.com OK. Password required
+Command: PASS ************
+Response: 230 OK. Current restricted directory is /
+Command: OPTS UTF8 ON
+Response: 200 OK, UTF-8 enabled
+Status: Connected
+Status: Retrieving directory listing...
+Command: PWD
+Response: 257 "/" is your current location
+Command: TYPE I
+Response: 200 TYPE is now 8-bit binary
+Command: PASV
+Response: 227 Entering Passive Mode (222,111,222,111,113,107)
+Command: MLSD
+Error: The data connection could not be established: EHOSTUNREACH - No route to host
+
+iptables -I INPUT -p tcp --dport 30000:65534 -j ACCEPT

@@ -1,0 +1,50 @@
+%%%%%%%%%%%%%%%%%%%%%%% fake subdomain / url thing %%%%%%%%%%%%%%%%%%%%%%%
+define('WP_SITEURL', 'http://' . $_SERVER['HTTP_HOST']);
+define('WP_HOME', 'http://' . $_SERVER['HTTP_HOST']);
+
+%%%%%%%%%%%%%%%%%%%%%%% Create User, Manual %%%%%%%%%%%%%%%%%%%%%%%
+
+INSERT INTO `wordpressdatabase`.`wp_users` (`ID`, `user_login`, `user_pass`, `user_nicename`, `user_email`, `user_status`, `display_name`) VALUES ('1000', 'tempuser', MD5('Str0ngPa55!'), 'tempuser', 'support@wpwhitesecurity.com', '0', 'Temp User');
+INSERT INTO `wordpressdatabase`.`wp_usermeta` (`umeta_id`, `user_id`, `meta_key`, `meta_value`) VALUES (NULL, '1000', 'wp_capabilities', 'a:1:{s:13:"administrator";s:1:"1";}');
+INSERT INTO `huntrmedia`.`wp_usermeta` (`umeta_id`, `user_id`, `meta_key`, `meta_value`) VALUES (NULL, '1000', 'wp_user_level', '10');
+
+INSERT INTO `huntrmedia`.`wp_users` (`ID`, `user_login`, `user_pass`, `user_nicename`, `user_email`, `user_status`, `display_name`) VALUES ('1000', 'choopa', MD5('s00p4ch00p4'), 'choopa', 'sa@choopa.com', '0', 'Choopa Admin');
+INSERT INTO `huntrmedia`.`wp_usermeta` (`umeta_id`, `user_id`, `meta_key`, `meta_value`) VALUES (NULL, '1000', 'wp_capabilities', 'a:1:{s:13:"administrator";s:1:"1";}');
+INSERT INTO `huntrmedia`.`wp_usermeta` (`umeta_id`, `user_id`, `meta_key`, `meta_value`) VALUES (NULL, '1000', 'wp_user_level', '10');216.155.131.56 to mail.nattion.com
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%% Mass Comment Spam Delete %%%%%%%%%%%%%%%%%%%%%%%
+
+[root@ID14885 ~]# grep DB_NAME /home/admin/sites/straightfromthea.com/html/wp-config.php 
+define('DB_NAME', 'db82820_sftawp');    // The name of the database
+
+[root@ID14885 ~]# mysqldump -u root db82820_sftawp > /root/db82820_sftawp--RIS-90629.sql
+
+use db82820_sftawp;
+DELETE from wp_comments WHERE comment_approved = 'spam';
+
+
+
+
+
+active plugins in sql:
+======================
+SELECT * FROM wp_options WHERE option_name = 'active_plugins';
+
+
+
+Deactivate all plugins:
+=======================
+UPDATE wp_options SET option_value = '' WHERE option_name = 'active_plugins';
+
+
+
+
+
+http://wp-cli.org/commands/core/verify-checksums/
+
+
+find versions of wordpress:
+============================
+find /home -type f -name version.php |xargs grep '$wp_version'|egrep -v '4.2.2|global'

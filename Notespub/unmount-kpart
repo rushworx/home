@@ -1,0 +1,4 @@
+unmount the /root/tmp:
+======================
+umount -l `mount|tail -1|awk '{print $3}'`
+

@@ -1,0 +1,9 @@
+telnet <someplace> 80
+
+GET /index.html HTTP/1.1
+GET /index.htm HTTP/1.1
+GET /adminer.php HTTP/1.1
+
+
+2014/11/11 09:56:37 [crit] 579#0: *229 stat() "/home/admin/sites/11.22.33.44/public/" 
+failed (13: Permission denied), client: 208.167.225.40, server: 11.22.33.44, request: "GET / HTTP/1.1", host: "11.22.33.44"

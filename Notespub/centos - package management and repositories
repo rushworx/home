@@ -1,0 +1,59 @@
+yum whatprovides
+
+extra centos repos/packages:
+	http://johnvansickle.com/ffmpeg/
+	atrpms	-	mencoder
+	elrepo
+
+yum check-update
+
+epel - install repo
+===================
+wget http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+rpm -ivh epel-release-6-8.noarch.rpm
+
+what version installed packages
+==================================
+yum list installed | grep openssl
+rpm -qa libmcrypt
+
+check change log for updates / patched vulerabilities patches patch
+===================================================================
+rpm -q --changelog openssl | head
+
+
+what package a file belongs to
+==================================== 
+rpm -qf /usr/lib64/libssl.so.10
+
+what libraries a binary depends on: ldd - print shared library dependencies
+=================================================================================
+ldd /usr/local/apache/bin/httpd | grep ssl
+
+nrpe
+==================
+get nrpe from epel
+
+
+rpmforge
+=========
+SHITTY - DONT USE IT
+
+
+install ONE PACKAGE only from a repo
+====================================
+nano /etc/yum.repos.d/name.repo
+
+add includepkgs=vlc*
+
+http://morecode.wordpress.com/2011/12/08/including-one-package-in-a-yum-repository/
+e.g. for kmode1000e package elrepo
+
+equiv to 
+=====================================
+yum groupinstall "Development tools"
+
+
+install rpm with dependencies
+==============================
+yum localinstall lldpd-0.7.9-1.1.x86_64.rpm 

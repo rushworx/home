@@ -1,0 +1,3 @@
+uses mbox
+
+notify-send 'New Fucking Mail' 'New Fucking Mail' 'New Fucking Mail' 'New Fucking Mail'

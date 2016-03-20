@@ -1,0 +1,9 @@
+for a list of IPs, which are down?
+==================================
+for server in `cat list`; do ping -c 2 $server; done|egrep -B1 '100% packet loss'
+
+whole subnet which are down with fping
+=====================================
+fping -g 172.20.0.0/23 2>/dev/null | grep -i unavailable
+fping -g ip.range.start ip.range.end 2>/dev/null | grep -i unavailable 
+

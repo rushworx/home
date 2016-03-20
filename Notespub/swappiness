@@ -1,0 +1,4 @@
+echo 10 > /proc/sys/vm/swappiness
+/etc/sysctl.conf as root
+vm.swappiness = 10
+

@@ -1,0 +1,5 @@
+yum install freeipmi-bmc-watchdog && chkconfig bmc-watchdog on && service bmc-watchdog start
+then you can do ipmitool mc watchdog get
+and it will show you if it's running
+you can adjust the timeout, default is 15 minutes for some stupid reason
+timeout is in /etc/sysconfig/bmc-watchdog

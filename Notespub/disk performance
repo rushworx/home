@@ -1,0 +1,3 @@
+1)	hdparm -Tt /dev/sda
+2)	dd if=/dev/zero of=test bs=64k count=16k conv=fdatasync;unlink test
+3)	iostat -dx

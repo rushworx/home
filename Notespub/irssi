@@ -1,0 +1,27 @@
+ /window move down 1
+
+\\\
+\\\
+\\\
+
+
+cat .irssi/nicklistfifo
+watch -d -tn 5 "ls -t ~/irclogs/127 | awk '{print $1}' | head -3 | grep -v bitlbee"
+
+/NICKLIST FIFO
+/SET autocreate_own_query OFF
+/SET autocreate_query_level DCCMSGS
+/SET use_status_window OFF
+/SET use_msgs_window ON
+
+
+add these to ~/.irssi/startup
+
+
+#!/bin/sh
+WNAME="irssi"
+if ! tmux -L default attach-session -t ${WNAME}; then
+    tmux new-session -d -s ${WNAME} 'irssi'
+    tmux split-window -t ${WNAME} -h -l 20 'sleep 1; cat ~/.irssi/nicklistfifo'
+    "${0}"
+fi

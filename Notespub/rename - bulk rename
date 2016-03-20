@@ -1,0 +1,11 @@
+IMG_0003 to IMG_0031
+
+
+rename -n 's/IMG/hp_audioproject/'
+
+
+
+root@fs1:/stor/media/pixclips/DCIM/100APPLE# rename -n 's/IMG/hp_audioproject/' IMG_00*
+IMG_0003.JPG renamed as hp_audioproject_0003.JPG
+IMG_0004.JPG renamed as hp_audioproject_0004.JPG
+IMG_0005.JPG renamed as hp_audioproject_0005.JPG

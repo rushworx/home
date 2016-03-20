@@ -1,0 +1,2 @@
+root@id7415 [/home/tjsdjs/public_html/forums/install]# mysql -e 'use tjsdjs_vbulletin; select * from setting;'|grep templateversion
+templateversion 3.8.0           1       version 3.8.0   0       1       vbulletin       free    0

@@ -1,0 +1,132 @@
+mysql -e "show global variables like 'join_buffer_size';"
+
+mysqlcheck --all-databases
+
+mysql -e 'show full processlist;' >> /root/mysql-show-full-processlist.txt
+
+%%%%%%%%%%%%%%%%%%%% temporary password / reset %%%%%%%%%%%%%%%%%%%%
+
+t3mpp4$$w0rd!0 = $P$Bc8YR8FThCaslZMR9IdpNebOyAiVN21
+
+"UPDATE (name-of-table-you-found) SET user_pass="(MD5-string-you-made)" WHERE ID = (id#-of-account-you-are-reseting-password-for)" (actually changes the password)
+"SELECT ID, user_login, user_pass FROM (name-of-table-you-found)" (confirm that it was changed) 
+
+
+"UPDATE  SET user_pass="$P$Bc8YR8FThCaslZMR9IdpNebOyAiVN21" WHERE ID = 1" (actually changes the password)
+
+
+
+%%%%%%%%%%%%%%%%%%%% show mysql databases %%%%%%%%%%%%%%%%%%%%
+
+mysql -u root -Bse 'show databases' | grep someDbName
+
+
+%%%%%%%%%%%%%%%%%%%%  backup & restore %%%%%%%%%%%%%%%%%%%%
+
+mysqldump -u root --all-databases > /root/all_db_backup.sql
+mysqldump -u root hdmixtapes > hdmixtapes.sql
+
+
+
+::restore ALL::
+(likely need in my.cnf: max_allowed_packet = 12000000)
+mysql -u root < /root/all_db_backup.sql
+
+grep "Current Database" /root/backup.sql
+
+::restore ONE::
+[root@Carl-CentosVM carl]# mysql -u root --database mysql < /root/backup.sql 
+[root@Carl-CentosVM carl]# mysql -u root --database test < /root/backup.sql 
+[root@Carl-CentosVM carl]# mysql -u root --database testwp < /root/backup.sql 
+
+
+%%%%%%%%%%%%%%%%%%%%	move datadir to home %%%%%%%%%%%%%%%%%%%%
+
+cp -av /etc/my.cnf /etc/my.cnf_SBZ-28064
+
+#check where datadir and socket are.. should not exist yet???
+grep "datadir" /etc/my.cnf
+grep "socket" /etc/my.cnf
+
+
+service mysql stop
+
+echo "datadir=/home/mysqldata" >> /etc/my.cnf
+
+cp -av /var/lib/mysql /home/mysqldata
+
+root@id14067 [/var/lib/mysql]# rm -rf cphulkd/ deeparen_texasholdem/ eximstats/ horde/ leechprotect/ logaholicDB_id14067/ mysql/ performance_schema/ roundcube/ sagweb_evergreen/
+root@id14067 [/var/lib/mysql]# df -h | grep sda2
+/dev/sda2              29G  9.9G   18G  37% /
+root@id14067 [/var/lib/mysql]# df -h
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/sda2              29G  9.9G   18G  37% /
+tmpfs                  32G     0   32G   0% /dev/shm
+/dev/sda1             291M   87M  190M  32% /boot
+/dev/sda6             179G   34G  136G  20% /home
+/dev/sda5             3.9G  136M  3.6G   4% /tmp
+
+mv /home/mysqldata/mysql.sock /var/lib/mysql/
+
+#for --log-error and -pid-file
+mv /var/lib/mysql/id14067* /var/lib/mysql/
+-------------------------------------------------------------------------------------------
+
+
+|| show running (shitty) queries ||
+===================================
+echo 'show full processlist\g'|mysql
+
+
+=
+show global status like 'Conn%'
+
+
+|| make db / grants ||
+======================
+create database huntrmedia;
+grant all privileges on huntrmedia.* to 'huntrmedia'@'localhost' identified by 'iLrXQBRtlKSjaR';
+grant all privileges on membersdotsocialtriggers.* to 'members'@'localhost' identified by 'nAoJFfrZ7ZgX8v';
+grant all privileges on foo.* to 'foouser'@'localhost' identified by 't3mpp4$$w0rd!0';
+flush privileges;
+
+
+|| find stuff ||
+================
+select * from whitelist where IP like "%149.109%";
+select * from mysql_auth where username like "%cmacmillan%";
+
+
+
+http://www.thegeekstuff.com/2008/09/backup-and-restore-mysql-database-using-mysqldump/
+
+|| fixing totally fucked shit ||
+-------------------------------
+https://administer.choopa.com/tickets/view.php?TICKETID=457018
+
+
+%%%% tables using what engine? %%%%
+mysql> select TABLE_NAME, ENGINE from information_schema.TABLES where TABLE_SCHEMA = 'onlinest_xcart418p';
+
+tuning:
+	innodb_file_per_table=1
+	default-storage-engine=innodb
+	recommended_innodb_buffer_pool_size
+ 
+ 
+|| extract grants for migration ||
+==================================
+# adapted from http://serverfault.com/questions/8860/how-can-i-export-the-privileges-from-mysql-and-then-import-to-a-new-server
+mysql -B -N $@ -e "SELECT DISTINCT CONCAT(
+'SHOW GRANTS FOR \'', user, '\'@\'', host, '\';'
+) AS query FROM mysql.user" | \
+egrep '5922_nude_wp1|5922_club_wp1|5922_slen_wp2|5922_slen_wp1|5922_girl_wp1|5922_phat_wp1|5922_musc_wp1|5922_mansiondb|5922_porn_wp1' | \
+grep -v 'lucky' | \
+mysql | \
+sed 's/\(GRANT .*\)/\1;/;s/^\(Grants for .*\)/## \1 ##/;/##/{x;p;x;}' 
+
+
+==================================================================
+||	server config						||
+==================================================================
+

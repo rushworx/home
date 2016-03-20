@@ -1,0 +1,3 @@
+bonnie++ -d /mnt/bonnietarget/ -s 128g -n 4096 -x 100 -b -u root
+
+mkfs.ext4 /dev/vmimages/stresslv

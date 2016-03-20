@@ -1,0 +1,3 @@
+du -sh /var/spool/mail/root
+cat /dev/null > /var/spool/mail/root
+---

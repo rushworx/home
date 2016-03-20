@@ -1,0 +1,20 @@
+smtp
+	telnet <IP> 25
+	helo me
+	mail from:email@domain.com
+	rcpt to:youremail@yourdomain.com
+	Data
+	Subject:This is a test
+	quit
+	
+pop3 - port 110	http://support.microsoft.com/kb/187785
+	telnet <POP server name or IP address> 110
+
+	USER	This command identifies you as a registered account on the server. After you see the server welcome message mentioned above, type USER <account name> After entering the USER information, the server will return a line that reads, "+OK Password required for <account name>."
+	PASS	Type PASS <your password> If the password is accepted, the server will return a line similar to: "+OK <account name> has <n> message(s) (MMMMM) octets", where <n> is the number of messages stored in your mailbox on the server and (MMMMM) is the total size of all messages.
+	LIST	Type LIST at the prompt. The server will return "+OK <n> messages <MMMMM> octets), a list of the messages including their numbers, and the individual message sizes.
+	RETR	This command will retrieve the text of a message. For example, if you wish to retrieve message number 4, type at the prompt, "RETR 4."
+	DELE	This command allows you to delete a message from the POP server. To delete a message enter DELE <n>, where <n> is the message number determined from the LIST command. For example, to delete message number 4, enter the command "DELE 4."
+			IMPORTANT: The DELE command should be used with care and in extreme cases where a specific message is blocking mail delivery. It is strongly recommended that you retrieve the text of the message into a log file as described above before attempting to delete it. 
+	QUIT	This command permits you to quit the Telnet session.
+

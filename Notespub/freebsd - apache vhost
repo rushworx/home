@@ -1,0 +1,21 @@
+mkdir /usr/home/dancho/sites/fecesnoticias.com
+
+[root@somehost /usr/home/dancho/sites]# ls -l | grep feces
+drwxr-xr-x   5 dancho  wheel   512 Jan 26  2012 aufecesnews.com
+drwxr-xr-x   8 dancho  wheel   512 Oct  5  2011 fecesnews-7.com
+drwxr-xr-x   8 dancho  wheel   512 Jan 29  2013 fecesnews-uk.com
+drwxr-xr-x   2 root    wheel   512 Jun 27 13:02 fecesnoticias.com
+drwxr-xr-x   5 dancho  wheel   512 Sep 30  2010 usafecesweekly.com
+
+[root@somehost /usr/home/dancho/sites]# chown -R dancho:wheel fecesnoticias.com/
+
+[root@somehost /usr/local/etc/apache22/extra]# tail -n 10 /usr/local/etc/apache22/extra/httpd-vhosts.conf
+<VirtualHost *:80>
+    ServerName fecesnoticias.com
+    ServerAlias www.fecesnoticias.com
+    DocumentRoot /home/dancho/sites/fecesnoticias.com
+    ScriptAlias /cgi-bin/ /home/dancho/sites/fecesnoticias.com/cgi-bin/
+    ErrorLog /var/log/httpd/fecesnoticias.com-error
+    CustomLog /var/log/httpd/fecesnoticias.com-access combined
+</VirtualHost>
+

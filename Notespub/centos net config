@@ -1,0 +1,47 @@
+ip range:	/etc/sysconfig/network-scripts/
+	ifcfg-eth0-range0
+
+TYPE=Ethernet
+ONBOOT=yes
+NM_CONTROLLED=yes
+BOOTPROTO=none
+IPADDR_START=209.222.20.108
+IPADDR_END=209.222.20.110
+PREFIX=29
+CLONENUM_START=0
+
+
+
+heres how the installer does it:
+==================================
+[root@id16977 ~]# cat /etc/sysconfig/network-scripts/ifcfg-eth0
+DEVICE=eth0
+TYPE=Ethernet
+UUID=d7c0c70c-521a-4cce-9f02-233e8cc0058f
+ONBOOT=no
+NM_CONTROLLED=yes
+BOOTPROTO=none
+HWADDR=00:25:90:DA:22:A6
+
+IPADDR=104.156.234.51
+PREFIX=29
+GATEWAY=104.156.234.49
+
+IPADDR2=104.156.234.52
+PREFIX2=29
+GATEWAY2=104.156.234.49
+
+IPADDR3=104.156.234.53
+PREFIX3=29
+GATEWAY3=104.156.234.49
+
+IPADDR4=104.156.234.54
+PREFIX4=29
+GATEWAY4=104.156.234.49
+
+DNS1=8.8.8.8
+DNS2=8.8.4.4
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=yes
+IPV6INIT=no
+NAME="System eth0"

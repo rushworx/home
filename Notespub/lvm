@@ -1,0 +1,1 @@
+lvcreate vmimages -L 800G -n SRVID666

@@ -1,0 +1,41 @@
+Can OSSEC include information on who changed a file in the alert?
+
+In short, no. OSSEC does not track this information. You could use your OS’s auditing facilities to track this information, and create a rule to alert when an appropriate log is created.
+
+damn
+
+<syscheck>
+  <alert_new_files>yes</alert_new_files>
+
+<directories check_all="yes">/etc,/usr/bin,/usr/sbin</directories>
+report_changes="yes"
+
+<directories report_changes="yes" realtime="yes" restrict=".php|.js|.py|.sh|.html" check_all="yes">/home/sammy,/var/www</directories>
+
+
+
+<rules>
+   <include>wordpress_rules.xml</include>
+
+
+
+===
+1. does the email work
+2. what does it tell you when something is changed?
+
+
+
+--
+-levels?
+-what level triggers an email
+-how often it emails?
+
+<localfile>
+        <log_format>syslog</log_format>
+        <location>/home/ossectest</location>
+</localfile>
+
+<rule id="6666" level="3">
+  <match>test123</match>
+  <description>wordpress rules test</description>
+</rule>

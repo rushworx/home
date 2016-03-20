@@ -1,0 +1,16 @@
+centos install:
+===============
+yum -y install net-snmp-libs; wget http://thor.gameservers.com/6/lldpd-0.7.9-1.1.x86_64.rpm; rpm -i lldpd-0.7.9-1.1.x86_64.rpm
+service lldpd start; 
+
+vultr get switch name and port number for int net diag
+======================================================
+
+lldpctl eth1  | grep "SysName\|PortDescr"
+
+[root@chi870 ~]# lldpctl eth1  | grep "SysName\|PortDescr"
+    SysName:      ds2-bs-bs.bs
+    PortDescr:    ethernet1/1/39
+
+
+

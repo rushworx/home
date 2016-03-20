@@ -1,0 +1,4 @@
+check agent version: r1soft-setup -v 
+http://www.r1soft.com/system-requirements
+http://repo.r1soft.com/modules/Centos_7_x64/
+/usr/sbin/r1soft/log
