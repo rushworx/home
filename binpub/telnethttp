@@ -3,6 +3,10 @@
 ##	test sites with telnet faster
 ##
 ##  usage: telnethttp http://somesite.com 80
+##
+## ---	requires expect ---
+## debian: apt-get install expect
+
 set timeout 10
 set domain [lindex $argv 0]
 set port [lindex $argv 1]
