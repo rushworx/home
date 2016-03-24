@@ -1,0 +1,98 @@
+||=======================================================================================================||
+||	3ware, 3ware cli																					 ||				
+||=======================================================================================================||
+terms:  
+    DCB=Disk Configuration Block
+	otherwise known as raid metadata
+tw_cli /c0 show
+
+
+[root@host]# tw_cli info
+
+Ctl   Model        (V)Ports  Drives   Units   NotOpt  RRate   VRate  BBU
+------------------------------------------------------------------------
+c0    9690SA-4I    2         2        1       0       1       1      -
+
+[root@host]# tw_cli info c0
+
+Unit  UnitType  Status         %RCmpl  %V/I/M  Stripe  Size(GB)  Cache  AVrfy
+------------------------------------------------------------------------------
+u0    RAID-1    OK             -       -       -       931.312   OFF    OFF
+
+VPort Status         Unit Size      Type  Phy Encl-Slot    Model
+------------------------------------------------------------------------------
+p0    OK             u0   931.51 GB SATA  0   -            ST1000NM0011
+p1    OK             u0   931.51 GB SATA  1   -            ST1000NM0011
+
+
+||=======================================================================================================||
+||	mega cli																							 ||
+||=======================================================================================================||
+------------------------------------------------------------------------
+							aliases
+------------------------------------------------------------------------
+echo "alias megacli='/opt/MegaRAID/MegaCli/MegaCli64'" >> /root/.bashrc
+
+
+------------------------------------------------------------------------
+				blink drive LED / Identify drive
+------------------------------------------------------------------------
+ - Start LED Blink
+		/opt/MegaRAID/MegaCli/MegaCli64 -PdLocate -start -physdrv[252:0] -a0 -NoLog
+ - Stop LED
+		/opt/MegaRAID/MegaCli/MegaCli64 -PdLocate -stop -physdrv[252:0] -a0 -NoLog
+
+------------------------------------------------------------------------
+						install megacli
+------------------------------------------------------------------------
+rpm -Uvh http://www.ipfusions.com/setup/MegaCli-8.07.07-1.noarch.rpm
+
+
+------------------------------------------------------------------------
+				Install NRPE and plugins from epel repo:
+------------------------------------------------------------------------
+yum install epel-release
+yum -y install nrpe nagios-plugins nagios-plugins-perl
+wget -O /usr/lib64/nagios/plugins/check_MegaCli http://install.choopa.net/check_MegaCli
+chmod +x /usr/lib64/nagios/plugins/check_MegaCli
+echo -e "alias megacli='/opt/MegaRAID/MegaCli/MegaCli64'\nalias megacli64='/opt/MegaRAID/MegaCli/MegaCli64'" > /root/.bashrc
+
+
+------------------------------------------------------------------------
+					consistency check status
+------------------------------------------------------------------------
+[root@host ~]# MegaCli -LDInfo -Lall -aALL 
+Check Consistency : Completed 72%, Taken 665 min.
+> 11 hours!
+http://fibrevillage.com/storage/177-megaraid-consistency-check-in-detail
+
+------------------------------------------------------------------------
+							event log
+------------------------------------------------------------------------
+/opt/MegaRAID/MegaCli/MegaCli64 -AdpEventLog -GetEvents -f events.log -aALL && cat events.log
+
+
+------------------------------------------------------------------------
+							notes
+------------------------------------------------------------------------
+ - controller has some self-defense against someone mistakenly re-inserting a bad drive so it won't start an automatic rebuild on a drive that was just disconnected and reconnected.  Drives that were previously in an array are marked as "Foreign" if they are reinserted. Replacing a drive with a true spare drive off the shelf triggers an auto-rebuild
+ - http://www.lsi.com/products/raid-controllers/pages/default.aspx
+ 
+
+------------------------------------------------------------------------
+							jbod
+------------------------------------------------------------------------
+JBOD must be enabled on the raid controller before installing the OS
+ - mash ctrl + y to get the preboot cli for megaraid
+ - enable jbod
+		AdpSetProp EnableJBOD 1 -aALL	
+ - check if enabled:
+		AdpGetProp enablejbod -aALL
+
+------------------------------------------------------------------------
+							rebuild
+------------------------------------------------------------------------
+ - rebuild status
+		megacli -PDRbld -ShowProg -PhysDrv [252:1] -a0
+ - auto rebuild		
+		megacli -AdpAutoRbld -Enbl|-Dsbl|-Dsply -a0
