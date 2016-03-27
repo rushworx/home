@@ -1,3 +1,7 @@
+# multiple profiles with variously colored transparent backgrounds. 
+# man terminator_config
+# size 10 font fine for pixel density on common commodity monitors
+
 [global_config]
   enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
   tab_position = bottom
