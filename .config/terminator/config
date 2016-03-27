@@ -1,7 +1,3 @@
-# multiple profiles with variously colored transparent backgrounds. 
-# man terminator_config
-# size 10 font fine for pixel density on common commodity monitors
-
 [global_config]
   enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
   tab_position = bottom
@@ -46,8 +42,8 @@
     background_type = transparent
     background_image = None
     foreground_color = "#ffffff"
+    show_titlebar = False
     font = Monospace 10
-    background_color = "#000000"
   [[lt green]]
     scrollbar_position = hidden
     use_system_font = False
@@ -110,6 +106,16 @@
     show_titlebar = False
     font = Monospace 10
     background_color = "#000e00"
+  [[orange-move]]
+    scrollbar_position = hidden
+    use_system_font = False
+    background_darkness = 0.95
+    background_type = transparent
+    background_image = None
+    foreground_color = "#000000"
+    antialias = False
+    font = Monospace 10
+    background_color = "#874400"
   [[cyan]]
     scrollbar_position = hidden
     use_system_font = False
@@ -120,15 +126,6 @@
     show_titlebar = False
     font = Monospace 10
     background_color = "#002c2d"
-  [[orange-move]]
-    scrollbar_position = hidden
-    use_system_font = False
-    background_darkness = 0.95
-    background_type = transparent
-    background_image = None
-    foreground_color = "#874400"
-    show_titlebar = False
-    font = Monospace 10
 [layouts]
   [[default]]
     [[[child1]]]
