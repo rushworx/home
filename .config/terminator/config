@@ -1,0 +1,136 @@
+[global_config]
+  enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+  tab_position = bottom
+  inactive_color_offset = 0.9
+  borderless = True
+[keybindings]
+[profiles]
+  [[blue]]
+    scrollbar_position = hidden
+    use_system_font = False
+    background_darkness = 0.8
+    background_type = transparent
+    background_image = None
+    foreground_color = "#ffffff"
+    show_titlebar = False
+    font = Monospace 10
+    background_color = "#16253e"
+  [[pink]]
+    scrollbar_position = hidden
+    use_system_font = False
+    background_darkness = 0.95
+    background_type = transparent
+    background_image = None
+    foreground_color = "#ffffff"
+    show_titlebar = False
+    font = Monospace 10
+    background_color = "#734463"
+  [[brown]]
+    scrollbar_position = hidden
+    use_system_font = False
+    background_darkness = 0.95
+    background_type = transparent
+    background_image = None
+    foreground_color = "#ffffff"
+    show_titlebar = False
+    font = Monospace 10
+    background_color = "#372a20"
+  [[default]]
+    scrollbar_position = hidden
+    use_system_font = False
+    background_darkness = 0.94
+    background_type = transparent
+    background_image = None
+    foreground_color = "#ffffff"
+    font = Monospace 10
+    background_color = "#000000"
+  [[lt green]]
+    scrollbar_position = hidden
+    use_system_font = False
+    background_darkness = 0.94
+    background_type = transparent
+    background_image = None
+    cursor_color = "#ffffff"
+    foreground_color = "#ffffff"
+    show_titlebar = False
+    font = Monospace 10
+    background_color = "#043c0c"
+  [[yelgrn]]
+    scrollbar_position = hidden
+    use_system_font = False
+    copy_on_selection = True
+    visible_bell = True
+    background_darkness = 0.94
+    urgent_bell = True
+    background_type = transparent
+    background_image = None
+    cursor_color = "#ffffff"
+    foreground_color = "#ffffff"
+    show_titlebar = False
+    font = Monospace 10
+    background_color = "#838d6f"
+    audible_bell = True
+  [[purple]]
+    scrollbar_position = hidden
+    use_system_font = False
+    visible_bell = True
+    background_darkness = 0.93
+    urgent_bell = True
+    background_type = transparent
+    background_image = None
+    foreground_color = "#ffffff"
+    show_titlebar = False
+    font = Monospace 10
+    background_color = "#11001e"
+    audible_bell = True
+  [[gray]]
+    scrollbar_position = hidden
+    use_system_font = False
+    visible_bell = True
+    background_darkness = 0.94
+    urgent_bell = True
+    background_type = transparent
+    background_image = None
+    foreground_color = "#ffffff"
+    show_titlebar = False
+    font = Monospace 10
+    background_color = "#424242"
+    audible_bell = True
+  [[green]]
+    scrollbar_position = hidden
+    use_system_font = False
+    background_darkness = 0.95
+    background_type = transparent
+    background_image = None
+    foreground_color = "#ffffff"
+    show_titlebar = False
+    font = Monospace 10
+    background_color = "#000e00"
+  [[cyan]]
+    scrollbar_position = hidden
+    use_system_font = False
+    background_darkness = 0.8
+    background_type = transparent
+    background_image = None
+    foreground_color = "#ffffff"
+    show_titlebar = False
+    font = Monospace 10
+    background_color = "#002c2d"
+  [[orange-move]]
+    scrollbar_position = hidden
+    use_system_font = False
+    background_darkness = 0.95
+    background_type = transparent
+    background_image = None
+    foreground_color = "#874400"
+    show_titlebar = False
+    font = Monospace 10
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+    [[[window0]]]
+      type = Window
+      parent = ""
+[plugins]
