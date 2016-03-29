@@ -1,0 +1,12 @@
+Centos
+------
+IPV6INIT=yes
+IPV6ADDR=b
+IPV6_DEFAULTGW=
+
+Debian
+------
+iface eth0 inet6 static
+  address 2001:db8::c0ca:1eaf
+  netmask 64
+  gateway 2001:db8::1ead:ed:beef
