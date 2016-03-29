@@ -1,4 +1,7 @@
-source /home/carl/.bashrc-work
+#include proprietary stuff for work, if that file exists
+if [ -f /home/carl/.bashrc-work ]; then
+	source /home/carl/.bashrc-work
+fi
 
 #preferred switches 
 alias palemoon="palemoon -ProfileManager -new-instance"
@@ -19,5 +22,3 @@ function fpingclean { fping -g "$1" 2>/dev/null | grep -v unreach ;}; export fpi
 
 #derps
 alias grpe="echo derp!"
-
-
