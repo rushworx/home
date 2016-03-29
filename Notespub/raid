@@ -1,0 +1,336 @@
+||======================================================================||
+||	3ware, 3ware cli						||									||
+||======================================================================||
+terms:  
+    DCB=Disk Configuration Block
+	otherwise known as raid metadata
+tw_cli /c0 show
+
+
+[root@host]# tw_cli info
+
+Ctl   Model        (V)Ports  Drives   Units   NotOpt  RRate   VRate  BBU
+------------------------------------------------------------------------
+c0    9690SA-4I    2         2        1       0       1       1      -
+
+[root@host]# tw_cli info c0
+
+Unit  UnitType  Status         %RCmpl  %V/I/M  Stripe  Size(GB)  Cache  AVrfy
+------------------------------------------------------------------------------
+u0    RAID-1    OK             -       -       -       931.312   OFF    OFF
+
+VPort Status         Unit Size      Type  Phy Encl-Slot    Model
+------------------------------------------------------------------------------
+p0    OK             u0   931.51 GB SATA  0   -            ST1000NM0011
+p1    OK             u0   931.51 GB SATA  1   -            ST1000NM0011
+
+
+||======================================================================||
+||	mega cli							||								||
+||======================================================================||
+install megacli
+---------------
+rpm -Uvh http://www.ipfusions.com/setup/MegaCli-8.07.07-1.noarch.rpm
+
+Install NRPE and plugins from epel repo:
+----------------------------------------
+see noteswork
+
+find bad drives through media error count
+-----------------------------------------	
+megacli -pdlist -a0|egrep 'Slot|Device Id|Inquiry|Error Count|state'|sed -e $'s/Slot/\\\nSlot/g'
+
+consistency check performance hit
+see noteswork
+
+------------------||||||||||||||||||----------------------
+
+NOTES:
+*	controller has some self-defense against someone mistakenly re-inserting a bad drive so it won't start an automatic rebuild on a drive that was just disconnected and reconnected.  Drives that were previously in an array are marked as "Foreign" if they are reinserted. Replacing a drive with a true spare drive off the shelf triggers an auto-rebuild
+
+*	http://www.lsi.com/products/raid-controllers/pages/default.aspx
+
+echo "alias megacli='/opt/MegaRAID/MegaCli/MegaCli64'" >> /root/.bashrc
+
+=====
+JBOD must be enabled on the raid controller before installing the OS
+
+mash ctrl + y to get the preboot cli for megaraid
+
+AdpSetProp EnableJBOD 1 -aALL #will enable jbod
+AdpGetProp enablejbod -aALL #check if enabled
+---
+
+
+[Enclosure #:Slot#]
+enclosure usually 252
+
+show all info:
+-------------------------------------------------
+	configuration details
+-AdpAllInfo -a0|less 
+-EncInfo -aALL
+-PDList -aALL
+-PDList -aALL
+megacli -PDList -aAll|less
+-PDInfo -PhysDrv [E:S] -aALL 
+
+megacli -LDInfo -Lall -aAll | less
+
+-a			specify adapter
+			-a0, -aAll
+-Lall		which logical devices?
+-LDInfo		logical devices?
+
+
+Get Enclosure ID
+/opt/MegaRAID/MegaCli/MegaCli64 -PDlist -a0 | grep "Enclosure Device"
+
+Get Device IDs
+/opt/MegaRAID/MegaCli/MegaCli64 -PDlist -a0 | grep "Device Id"
+
+LED Identifier
+/opt/MegaRAID/MegaCli/MegaCli64 -PdLocate -start -physdrv[252:0] -a0 -NoLog
+Stop LED
+/opt/MegaRAID/MegaCli/MegaCli64 -PdLocate -stop -physdrv[252:0] -a0 -NoLog
+
+
+correlate linux device with raid scsi device
+see noteswork
+
+megacli pretty output / look for bad drives:
+---------------------------------------------
+megacli -pdlist -a0|egrep 'Slot|Device Id|Inquiry|Error Count|state'|sed -e $'s/Slot/\\\nSlot/g'
+
+Slot Number: 21
+Device Id: 52
+Media Error Count: 0
+Other Error Count: 0
+Firmware state: Online, Spun Up
+Inquiry Data:      WD-WCAVY0909520WDC WD2002FYPS-01U1B1                   04.05G05
+
+Slot Number: 22
+Device Id: 53
+Media Error Count: 1 <--- bad
+Other Error Count: 0
+Firmware state: Online, Spun Up <--- might say fail here when bad
+Inquiry Data:      WD-WMAY02483131WDC WD2003FYYS-02W0B0                   01.01D01
+
+Slot Number: 23
+Device Id: 54
+Media Error Count: 0
+Other Error Count: 0
+Firmware state: Online, Spun Up
+Inquiry Data:      WD-WCAVY0905131WDC WD2002FYPS-01U1B1                   04.05G05
+
+
+
+||======================================================================||
+||	mdadm linux soft raid												||
+||======================================================================||
+mdadm --manage /dev/md1 --fail /dev/sdi1 --remove /dev/sdi1; mdadm --add /dev/md1 /dev/sdi1
+mdadm --manage /dev/md1 --fail /dev/sdi1 --remove /dev/sdi1; mdadm --add /dev/md1 /dev/sdi1
+
+mdadm --manage /dev/md127 --fail /dev/sdg1 --remove /dev/sdg1; mdadm --add /dev/md127 /dev/sdg1
+
+
+mdadm /dev/md127 --remove failed
+
+||======================================================================||
+||	3ware, 3ware cli						||									||
+||======================================================================||
+terms:  
+    DCB=Disk Configuration Block
+	otherwise known as raid metadata
+tw_cli /c0 show
+
+
+[root@host ~]# tw_cli info
+
+Ctl   Model        (V)Ports  Drives   Units   NotOpt  RRate   VRate  BBU
+------------------------------------------------------------------------
+c0    9690SA-4I    2         2        1       0       1       1      -
+
+[root@host ~]# tw_cli info c0
+
+Unit  UnitType  Status         %RCmpl  %V/I/M  Stripe  Size(GB)  Cache  AVrfy
+------------------------------------------------------------------------------
+u0    RAID-1    OK             -       -       -       931.312   OFF    OFF
+
+VPort Status         Unit Size      Type  Phy Encl-Slot    Model
+------------------------------------------------------------------------------
+p0    OK             u0   931.51 GB SATA  0   -            ST1000NM0011
+p1    OK             u0   931.51 GB SATA  1   -            ST1000NM0011
+
+
+||======================================================================||
+||	mega cli							||								||
+||======================================================================||
+install megacli
+---------------
+rpm -Uvh Http://MegaCli-8.07.07-1.noarch.rpm
+
+------------------||||||||||||||||||----------------------
+
+NOTES:
+*	controller has some self-defense against someone mistakenly re-inserting a bad drive so it won't start an automatic rebuild on a drive that was just disconnected and reconnected.  Drives that were previously in an array are marked as "Foreign" if they are reinserted. Replacing a drive with a true spare drive off the shelf triggers an auto-rebuild
+
+*	http://www.lsi.com/products/raid-controllers/pages/default.aspx
+
+echo "alias megacli='/opt/MegaRAID/MegaCli/MegaCli64'" >> /root/.bashrc
+
+=====
+JBOD must be enabled on the raid controller before installing the OS
+
+mash ctrl + y to get the preboot cli for megaraid
+
+AdpSetProp EnableJBOD 1 -aALL #will enable jbod
+AdpGetProp enablejbod -aALL #check if enabled
+---
+
+
+[Enclosure #:Slot#]
+enclosure usually 252
+
+show all info:
+-------------------------------------------------
+	configuration details
+-AdpAllInfo -a0|less 
+-EncInfo -aALL
+-PDList -aALL
+-PDList -aALL
+megacli -PDList -aAll|less
+-PDInfo -PhysDrv [E:S] -aALL 
+
+megacli -LDInfo -Lall -aAll | less
+
+-a			specify adapter
+			-a0, -aAll
+-Lall		which logical devices?
+-LDInfo		logical devices?
+
+indicating bad drive for noc
+------------------------------------------------------------------------------------------------------------------------------------
+RAID is degraded on la337, but I can't figure out why
+
+# /opt/MegaRAID/MegaCli/MegaCli64 -PDlist -aALL -NoLog | egrep 'Slot|state' | awk '/Slot/{if (x)print x;x="";}{x=(!x)?$0:x" -"$0;}END{print x;}' | sed 's/Firmware state://g'
+Slot Number: 0 - Online, Spun Up
+Slot Number: 1 - Online, Spun Up
+Slot Number: 2 - Online, Spun Up
+Slot Number: 3 - Online, Spun Up
+Slot Number: 4 - Online, Spun Up
+Slot Number: 5 - Online, Spun Up
+Slot Number: 6 - Online, Spun Up
+
+[root@la337 ~]# /opt/MegaRAID/MegaCli/MegaCli64 -LDInfo -Lall -aALL
+
+
+Adapter 0 -- Virtual Drive Information:
+Virtual Drive: 0 (Target Id: 0)
+Name :
+RAID Level : Primary-6, Secondary-0, RAID Level Qualifier-3
+Size : 27.284 TB
+Sector Size : 512
+Is VD emulated : Yes
+Parity Size : 10.913 TB
+State : Partially Degraded
+Strip Size : 64 KB
+Number Of Drives : 7
+Span Depth : 1
+Default Cache Policy: WriteBack, ReadAdaptive, Cached, No Write Cache if Bad BBU
+Current Cache Policy: WriteThrough, ReadAdaptive, Cached, No Write Cache if Bad BBU
+Default Access Policy: Read/Write
+Current Access Policy: Read/Write
+Disk Cache Policy : Enabled
+Encryption Type : None
+Bad Blocks Exist: No
+PI type: No PI
+
+Is VD Cached: No
+
+
+the drive dissappeared
+what drive is actually failed?
+	
+LEDs on the good drives with PDlocate. The one that doesn't blink is the bad one.
+Device ID 4 is missing from the list, so that's probably the failed drive.
+
+Get Enclosure ID
+/opt/MegaRAID/MegaCli/MegaCli64 -PDlist -a0 | grep "Enclosure Device"
+
+Get Device IDs
+/opt/MegaRAID/MegaCli/MegaCli64 -PDlist -a0 | grep "Device Id"
+
+LED Identifier
+/opt/MegaRAID/MegaCli/MegaCli64 -PdLocate -start -physdrv[252:0] -a0 -NoLog
+
+Stop LED Identifier
+/opt/MegaRAID/MegaCli/MegaCli64 -PdLocate -stop -physdrv[252:0] -a0 -NoLog
+
+Device 4 == Slot 7.
+	
+Check if drive replaced:
+
+	
+[root@host ~]# megacli64 -PDlist -aALL|grep -i inquiry
+Inquiry Data: Z4D0EMKEST6000NM0024-1HT17Z SN02
+Inquiry Data: Z4D0EVXMST6000NM0024-1HT17Z SN02
+Inquiry Data: Z4D0BBJBST6000NM0024-1HT17Z SN02
+Inquiry Data: Z4D0LGHEST6000NM0024-1HT17Z SN02
+Inquiry Data: Z4D0KSJSST6000NM0024-1HT17Z SN02
+Inquiry Data: Z4D08LCRST6000NM0024-1HT17Z SN02
+Inquiry Data: BTTV441501JW200GGN INTEL SSDSC2BA200G3 5DV10270
+
+e.g. Seagate 6TB Model ST6000NM0024, serial Z4D0EMKE
+---------------------------------------------------------------------------------------------------------------------------------
+
+Get Enclosure ID
+/opt/MegaRAID/MegaCli/MegaCli64 -PDlist -a0 | grep "Enclosure Device"
+
+Get Device IDs
+/opt/MegaRAID/MegaCli/MegaCli64 -PDlist -a0 | grep "Device Id"
+
+LED Identifier
+/opt/MegaRAID/MegaCli/MegaCli64 -PdLocate -start -physdrv[252:0] -a0 -NoLog
+Stop LED
+/opt/MegaRAID/MegaCli/MegaCli64 -PdLocate -stop -physdrv[252:0] -a0 -NoLog
+
+
+megacli pretty output / look for bad drives:
+---------------------------------------------
+megacli -pdlist -a0|egrep 'Slot|Device Id|Inquiry|Error Count|state'|sed -e $'s/Slot/\\\nSlot/g'
+
+Slot Number: 21
+Device Id: 52
+Media Error Count: 0
+Other Error Count: 0
+Firmware state: Online, Spun Up
+Inquiry Data:      WD-WCAVY0909520WDC WD2002FYPS-01U1B1                   04.05G05
+
+Slot Number: 22
+Device Id: 53
+Media Error Count: 1 <--- bad
+Other Error Count: 0
+Firmware state: Online, Spun Up <--- might say fail here when b
+Inquiry Data:      WD-WMAY02483131WDC WD2003FYYS-02W0B0                   01.01D01
+
+Slot Number: 23
+Device Id: 54
+Media Error Count: 0
+Other Error Count: 0
+Firmware state: Online, Spun Up
+Inquiry Data:      WD-WCAVY0905131WDC WD2002FYPS-01U1B1                   04.05G05
+
+
+
+||======================================================================================================================||
+||	mdadm linux soft raid												||
+||======================================================================================================================||
+mdadm --manage /dev/md1 --fail /dev/sdi1 --remove /dev/sdi1; mdadm --add /dev/md1 /dev/sdi1
+mdadm --manage /dev/md1 --fail /dev/sdi1 --remove /dev/sdi1; mdadm --add /dev/md1 /dev/sdi1
+
+mdadm --manage /dev/md127 --fail /dev/sdg1 --remove /dev/sdg1; mdadm --add /dev/md127 /dev/sdg1
+
+
+mdadm /dev/md127 --remove failed
+
