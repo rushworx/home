@@ -1,3 +1,12 @@
+# various supermicro boards have intel nics not supported by out-of-the-box kernels
+# e.g. new supermicro x11 boards w/
+#	1 GbE LAN with Intel® i210-AT uses linux IGB driver, well supported out-of-the-box
+#	1 GbE LAN with Intel® PHY i219LM , uses e1000e was not detected on fresh install of Debian 7
+
+
+================================
+Centos 				|
+================================
 http://pkgs.org/search/kmod-e1000e
 
 old 2.3.2
@@ -12,7 +21,6 @@ author:         Intel Corporation, <linux.nics@intel.com>
 
 lsmod | grep e1000e
 
-
 # ethtool -i eth0
 driver: e1000e
 version: 2.3.2-k
@@ -23,9 +31,6 @@ supports-test: yes
 supports-eeprom-access: yes
 supports-register-dump: yes
 supports-priv-flags: no
-
-
-
 
 # rpm -i kmod-e1000e-3.1.0.2-1.el6.elrepo.x86_64.rpm
 
@@ -41,3 +46,19 @@ supports-test: yes
 supports-eeprom-access: yes
 supports-register-dump: yes
 supports-priv-flags: no
+
+
+========================
+Debian			|
+========================
+
+curl -O https://downloadmirror.intel.com/15817/eng/e1000e-3.3.3.tar
+tar xvf e1000e-3.3.3.tar
+cd 1000e-3.3.3/src
+apt-get install build-essential module-assistant
+make install
+ifconfig -a
+modprobe e1000e
+ifconfig -a
+cat /etc/udev/rules.d/70-persistent-net.rules
+vi /etc/modprobe.d/e1000e.conf
