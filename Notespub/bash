@@ -1,0 +1,61 @@
+ducks
+=====
+alias ducks='du -cks * |sort -rn |head -11'
+
+
+if then
+=======
+if [ $falafel = $serious_fucking_business ] ; then echo "yea, you weren't kidding" ; fi
+
+edit hosts file, flush dns cache
+================================
+sudo nano /etc/hosts; sudo service dns-clean restart
+
+check open file descriptors
+===========================
+while :; do cat /proc/sys/fs/file-nr; sleep 3; done
+
+while :
+do
+cat /proc/sys/fs/file-nr
+sleep 3
+done
+
+for loop example
+=============
+for i in 108.61.153.204 66.55.151.228 66.55.151.238 66.55.151.244 66.55.151.254 ;
+do dig @$i www.trackfb.com ;
+done
+
+new order - check specs
+=======================
+ifconfig | grep "inet addr";
+cat /proc/cpuinfo | grep "model name";
+cat /proc/cpuinfo | grep "model name" | wc -l
+free -m;
+fdisk -l | grep "Disk /dev/sda";
+uname -a;
+dmesg | grep "Link is Up";
+
+
+
+infinite loop
+=============
+while true; do clear; ps aux | grep java; sleep 1; done;
+
+
+disable screen blanking
+=======================
+for cur in $(find /dev/tty*); do setterm -term linux -blank 0 -powerdown 0 > "$cur"; done 
+
+for loop, c style
+=================
+for ((i = 745; i <= 792; i++)); do
+  ping -c 1 chi$i.vultr.com;
+done
+
+
+
+find what is using all the inodes
+=================================
+find / -xdev -printf '%h\n' | sort | uniq -c | sort -k 1 -n
