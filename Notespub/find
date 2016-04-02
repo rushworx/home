@@ -9,16 +9,14 @@ find /home/www/www.megaturds.com/m/temp/* -mtime +180 -exec rm {} \;
 find /home/www/www.megaturds.com/m/* -empty -type d -delete
 find /home/www/www.megaturds.com/m/* -type d -empty -exec rmdir {} \;
 
-
-
-
+find what is using all the inodes
+=================================
+find / -xdev -printf '%h\n' | sort | uniq -c | sort -k 1 -n
 
 
 what dbs are in use by word press sites
 =======================================
-find /home/admin/sites -type f -name "wp-config.php" -exec grep "define('DB_NAME'," {} \;
-
-
+find /path/to/www -type f -name "wp-config.php" -exec grep "define('DB_NAME'," {} \;
 
 
 move all folders
@@ -30,8 +28,6 @@ disk usage sum on find list
 ==========================
 # find /home/admin/sites/someshittysite.com/htdocs/flv/ -type f -name "original*" -print0|xargs -r0 du -chs | tail -n 1
 44G     total
-
-
 
 find exe, exclude windows
 ==========================
