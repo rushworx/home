@@ -24,7 +24,7 @@ done
 for loop example
 =============
 for i in 108.61.153.204 66.55.151.228 66.55.151.238 66.55.151.244 66.55.151.254 ;
-do dig @$i www.trackfb.com ;
+do dig @$i www.somesite.com ;
 done
 
 new order - check specs
@@ -36,8 +36,6 @@ free -m;
 fdisk -l | grep "Disk /dev/sda";
 uname -a;
 dmesg | grep "Link is Up";
-
-
 
 infinite loop
 =============
@@ -51,7 +49,7 @@ for cur in $(find /dev/tty*); do setterm -term linux -blank 0 -powerdown 0 > "$c
 for loop, c style
 =================
 for ((i = 745; i <= 792; i++)); do
-  ping -c 1 chi$i.vultr.com;
+  ping -c 1 abc$i.nowhere.com;
 done
 
 
