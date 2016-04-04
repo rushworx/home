@@ -9,3 +9,16 @@ yum --disablerepo="*" --enablerepo="rpmforge" list available|less
 what repos installed?
 ---------------------
 yum repolist
+==================================
+|             apt                |
+==================================
+apt-get install .*-icon-themes
+
+yum whatprovides , what package provides a command?
+===================================================
+apt-file search smartctl
+
+==================================
+|    ubuntu apt disable ipv6     |
+==================================
+http://unix.stackexchange.com/questions/9940/convince-apt-get-not-to-use-ipv6-method

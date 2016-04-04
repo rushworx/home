@@ -1,0 +1,17 @@
+troubleshooting tools
+---------------------
+
+
+LocalSettings.php
+------------------
+$wgShowExceptionDetails Enable more details (like a stack trace) to be shown on the "Fatal error" page.
+$wgDebugToolbar Shows a toolbar on the page with profiling, log messages and more.
+$wgShowDebug Adds the "log messages" part of wgDebugToolbar as a raw list to the page.
+$wgDevelopmentWarnings
+
+$wgShowSQLErrors = true;
+$wgDebugDumpSql  = true;
+$wgShowDBErrorBacktrace = true;
+
+error_reporting( -1 );
+ini_set( 'display_errors', 1 );

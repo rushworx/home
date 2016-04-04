@@ -1,0 +1,19 @@
+if you are stupid enugh to have deleted all your kernels and now all you have in grub menu is memtest.... 
+
+mount --bind /mnt/boot /mnt/root/boot/
+mount --bind /proc /mnt/root/proc
+mount --bind /run /mnt/root/run
+mount --bind /sys /mnt/root/sys
+mount --bind /proc /mnt/root/proc
+mount --bind /dev /mnt/root/dev
+
+chroot /mnt/root
+
+mkdir -p /run/resolvconf/interface  
+(fix resolv.conf)
+ifdown eth0; ifup eth0
+
+apt-get update
+apt-get install linux-image-3.13.0-24-generic
+
+that was easy
