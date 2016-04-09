@@ -1,7 +1,9 @@
-modules needed:
-===================
+to install ipmitool on a new system
+===================================
 yum -y install ipmitool
 sudo apt-get install ipmitool
+
+need to install some kernel modules:
 modprobe ipmi_devintf
 modprobe ipmi_si
 modprobe ipmi_msghandler
@@ -11,11 +13,16 @@ ipmi_devintf           17597  0
 ipmi_si                53686  0 
 ipmi_msghandler        45945  2 ipmi_devintf,ipmi_si
 
+
+system event log, power failures etc
+------------------------------------
 ipmitool sel list
 
 ipmitool lan print
 ipmitool lan print -I lan -U ADMIN -P ADMIN -H
 
+set boot devices
+----------------
 ipmitool chassis bootparam set bootflag force_pxe -I lan -U ADMIN -P ADMIN -H 
 ipmitool chassis bootdev pxe -I lan -U ADMIN -P ADMIN -H 
 
@@ -37,6 +44,8 @@ sleep 5;
 ipmitool chassis power reset -I lan -U ADMIN -P ADMIN -H $IP;
 
 
+aliases
+-------
 alias ipmimcreset='ipmitool mc reset cold -I lan -U ADMIN -P ADMIN -H'
 alias ipmibios='ipmitool chassis bootparam set bootflag force_bios -I lan -U ADMIN -P ADMIN -H'
 alias ipmireboot='ipmitool chassis power reset -I lan -U ADMIN -P ADMIN -H'
@@ -54,7 +63,9 @@ ID  Name             Callin  Link Auth  IPMI Msg   Channel Priv Limit
 [root@host ~]# ipmitool mc info 2>&1 |egrep \^Firmware
 Firmware Revision : 1.23
 
-
+serial over lan 
+===============
+ipmitool -H $IP -U ADMIN -P $PASS -I lanplus sol activate
 
 
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

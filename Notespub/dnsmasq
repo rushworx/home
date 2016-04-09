@@ -1,1 +1,47 @@
+dhcp leases list
+================
 /var/lib/dnsmasq/dnsmasq.leases
+/var/lib/misc/dnsmasq.leases
+grep 00:25:90:fe:f8:68 /var/lib/misc/dnsmasq.leases
+
+MAC=
+grep $MAC /var/lib/misc/dnsmasq.leases; grep $MAC /var/log/messages
+
+
+error messages from syslog
+==========================
+tail -f /var/log/messages | grep -v "available DHCP range\|vendor class\|client provides\|56:00\|52:54"
+
+tcpdump -i eth0 -n port bootpc or port bootps -vvv
+
+--> does it have subscriber-id?
+===============================
+12:17:07.479775 IP (tos 0x1,ECT(1), ttl 64, id 696, offset 0, flags [none], proto UDP (17), length 389)
+    10.247.1.1.bootps > 10.247.1.2.bootps: [udp sum ok] BOOTP/DHCP, Request from 56:66:66:66:66:66, length 361, hops 1, xid 0x8d23adae, Flags [none] (0x0000)
+          Gateway-IP 10.247.2.1
+          Client-Ethernet-Address 56:66:66:66:66:66
+          Vendor-rfc1048 Extensions
+            Magic Cookie 0x63825363
+            DHCP-Message Option 53, length 1: Request
+            Client-ID Option 61, length 7: ether 56:66:66:66:66:66
+            Requested-IP Option 50, length 4: 666.666.666.6662
+            Server-ID Option 54, length 4: 169.254.169.254
+            Hostname Option 12, length 15: "xcom168-ed0d59a"
+            FQDN Option 81, length 19: "xcom168-ed0d59a."
+            Vendor-Class Option 60, length 8: "MSFT 5.0"
+            Parameter-Request Option 55, length 11:
+              Subnet-Mask, Domain-Name, Default-Gateway, Domain-Name-Server
+              Netbios-Name-Server, Netbios-Node, Netbios-Scope, Router-Discovery
+              Static-Route, Classless-Static-Route-Microsoft, Vendor-Option
+            Agent-Information Option 82, length 33:
+              Circuit-ID SubOption 1, length 6: ^@^D^@M-G^A^N
+              Remote-ID SubOption 2, length 8: ^@^FtM-^NM-xIYM-^@
+              Subscriber-ID SubOption 6, length 13: 10.247.2.0/24
+            END Option 255, length 0
+
+
+tcpdump -n -i eth0 "ether host 0g:g4:7q:36:5f:q8"
+
+
+
+tcpdump -i eth0 -n "ether host 0g:g4:7q:36:5f:q8" and port bootpc or port bootps -vvv 
