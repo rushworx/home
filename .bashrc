@@ -1,9 +1,12 @@
 if [ -f /home/carl/.bashrc-work ]; then	source /home/carl/.bashrc-work; fi
+if [ -f /home/carl/.bashrc-priv ]; then	source /home/carl/.bashrc-priv; fi
+
+alias node="nodejs"
 
 #---- preferred switches ----
-alias palemoon="palemoon -ProfileManager -new-instance"
-alias mtr4="mtr -4 --report-cycles=40 --report -o LDRS NBAW"
-alias mtr6="mtr -6 --report-cycles=40 --report -o LDRS NBAW"
+alias pmoon="palemoon -ProfileManager -new-instance"
+alias mtr4="mtr -4 --report-cycles=40 --report-wide -o LDRS NBAW"
+alias mtr6="mtr -6 --report-cycles=40 --report-wide -o LDRS NBAW"
 alias rdesktop="rdesktop -g 1280x1024"
 
 #---- shortcuts ----
@@ -13,14 +16,15 @@ alias nmapmail="nmap -p 110,143,993,995,25,465,587"
 alias lsh="ls|head"
 
 #---- functions ----
-function pingssh { ping "$1"; ssh root@"$1"; }; export pingssh
-function vpingssh { ping "$1"; vssh root@"$1"; }; export vpingssh
+function pingrssh { ping "$1"; ssh root@"$1"; }; export pingssh
+function pingvssh { ping "$1"; vssh root@"$1"; }; export vpingssh
 function fpingclean { fping -g "$1" 2>/dev/null | grep -v unreach ;}; export fpingclean
-
+function whois { whois "$1" | less; }; export whois
 
 #----	path ----
 PATH=$PATH:~/binpub/
 if [ -d /home/carl/binwork ]; then PATH=$PATH:~/binwork/; fi
+if [ -d /home/carl/binpriv ]; then PATH=$PATH:~/binpriv/; fi
 
 #---- derps ----
 # apt-get install sl

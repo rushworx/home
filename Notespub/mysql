@@ -1,11 +1,23 @@
+=================
+|| dump grants ||
+=================
+mysql -u root  --skip-column-names -A -e"SELECT CONCAT('SHOW GRANTS FOR ''',user,'''@''',host,''';') FROM mysql.user WHERE user<>''" | mysql ${MYSQL_CONN} --skip-column-names -A | sed 's/$/;/g' > MySQLUserGrants.sql
+
+variables
+=========
 mysql -e "show global variables like 'join_buffer_size';"
 
+check
+=====
 mysqlcheck --all-databases
 
+show active queries processes 
+=============================
 mysql -e 'show full processlist;' >> /root/mysql-show-full-processlist.txt
 
-%%%%%%%%%%%%%%%%%%%% temporary password / reset %%%%%%%%%%%%%%%%%%%%
-
+================================
+|| temporary password / reset ||
+================================
 t3mpp4$$w0rd!0 = $P$Bc8YR8FThCaslZMR9IdpNebOyAiVN21
 
 "UPDATE (name-of-table-you-found) SET user_pass="(MD5-string-you-made)" WHERE ID = (id#-of-account-you-are-reseting-password-for)" (actually changes the password)

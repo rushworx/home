@@ -1,0 +1,22 @@
+http://wiki.vpslink.com/Linux_Command_Reference:_top#Column_Names
+
+PID	process id
+USER	duh
+PR	priority. -20 highest, 19 lowest.
+NI	nice value 
+VIRT	Total amount of virtual memory used
+RES	Resident size (kb) - Non-swapped physical memory 
+SHR	Shared memory size (kb) - Amount of shared memory used 
+	(shared memory is memory which could be allocated to other processes) 
+S	Process status:
+    R - Running
+    D - Sleeping, non-interruptable
+    S - Sleeping, interruptable
+    T - Traced or stopped
+    Z - Zombie or "hung" process 
+%CPU	Percentage of CPU time the process was using at the time top last updated 
+%MEM	Percentage of memory (RAM) the process was using at the time top last updated 
+TIME+	Cumulative CPU time which process and children used 
+COMMAND	Name of process / path to the command (press c to toggle) 
+
+
