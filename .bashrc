@@ -1,4 +1,4 @@
-if [ -f /home/carl/.bashrc-work ]; then	source /home/carl/.bashrc-work; fi
+if [ -f /home/carl/work/bashrc-work ]; then	source /home/carl/.bashrc-work; fi
 if [ -f /home/carl/.bashrc-priv ]; then	source /home/carl/.bashrc-priv; fi
 
 alias node="nodejs"
