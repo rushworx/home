@@ -1,0 +1,11 @@
+Debian
+======
+auto eth0
+iface eth0 inet static
+       address 11.22.33.44
+       netmask 255.255.255.248
+       gateway 11.11.11.11
+       dns-nameservers 8.8.8.8 8.8.4.4
+       ### aliases ###
+       up for X in 55 66 77; do ip addr add 11.22.33.$X/29 dev $IFACE label $IFACE:$X; done
+       down for X in 55 66 77; do ip add del 11.22.33.$X/29 dev $IFACE label $IFACE:$X; done 

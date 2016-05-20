@@ -27,16 +27,6 @@ for i in 108.61.153.204 66.55.151.228 66.55.151.238 66.55.151.244 66.55.151.254 
 do dig @$i www.somesite.com ;
 done
 
-new order - check specs
-=======================
-ifconfig | grep "inet addr";
-cat /proc/cpuinfo | grep "model name";
-cat /proc/cpuinfo | grep "model name" | wc -l
-free -m;
-fdisk -l | grep "Disk /dev/sda";
-uname -a;
-dmesg | grep "Link is Up";
-
 infinite loop
 =============
 while true; do clear; ps aux | grep java; sleep 1; done;
@@ -57,3 +47,7 @@ done
 find what is using all the inodes
 =================================
 find / -xdev -printf '%h\n' | sort | uniq -c | sort -k 1 -n
+
+redirect all to stdout
+======================
+command 2>&1 |less
