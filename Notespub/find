@@ -32,3 +32,11 @@ disk usage sum on find list
 find exe, exclude windows
 ==========================
 find ./ -name Windows -prune -o -iname *exe -print
+ 
+find symlinks
+=============
+ls -lR /path/to/folder | grep ^l
+
+find and delete
+===============
+find /tmp -name "index.html.*" | xargs rm -fr
