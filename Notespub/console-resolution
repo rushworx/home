@@ -1,0 +1,6 @@
+tty console font way to big? heres the fix
+
+Edit /etc/default/grub
+	GRUB_GFXMODE=auto
+sudo update-grub
+
