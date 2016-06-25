@@ -1,0 +1,20 @@
+carl@CarlDesktop ~ $ nslookup
+> set querytype=soa
+> cps.clitwizard.com
+Server:         127.0.1.1
+Address:        127.0.1.1#53
+
+Non-authoritative answer:
+*** Can't find cps.clitwizard.com: No answer
+
+Authoritative answers can be found from:
+clitwizard.com
+        origin = cass.ns.cloudflare.com
+        mail addr = dns.cloudflare.com
+        serial = 2021716716
+        refresh = 10000
+        retry = 2400
+        expire = 604800
+        minimum = 3600
+> 
+
